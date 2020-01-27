@@ -30,6 +30,7 @@
   <ItemGroup>
     <Content Include="main.js" />
     <Content Include="Notes.md" />
+    <Content Include="package.json" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>
