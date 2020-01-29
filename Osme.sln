@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Language", "Language\Language.njsproj", "{C2371582-5FB9-4473-B7BD-C63C2728BCA6}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "JSLib", "JSLib\JSLib.njsproj", "{9231DF42-9DB7-423F-A2AD-52D653E03212}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C2371582-5FB9-4473-B7BD-C63C2728BCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2371582-5FB9-4473-B7BD-C63C2728BCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2371582-5FB9-4473-B7BD-C63C2728BCA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9231DF42-9DB7-423F-A2AD-52D653E03212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9231DF42-9DB7-423F-A2AD-52D653E03212}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9231DF42-9DB7-423F-A2AD-52D653E03212}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9231DF42-9DB7-423F-A2AD-52D653E03212}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

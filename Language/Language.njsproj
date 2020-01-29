@@ -28,9 +28,47 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app\ActionTree\Assignment.js" />
+    <Content Include="app\ActionTree\Expression.js" />
+    <Content Include="app\ActionTree\Literal.js" />
+    <Content Include="app\ActionTree\Number.js" />
+    <Content Include="app\ActionTree\Operations\OsmeMath.js" />
+    <Content Include="app\ActionTree\Operator.js" />
+    <Content Include="app\ActionTree\Operators\Add.js" />
+    <Content Include="app\ActionTree\Operators\Assignment.js" />
+    <Content Include="app\ActionTree\Operators\Subtract.js" />
+    <Content Include="app\ActionTree\Program.js" />
+    <Content Include="app\ActionTree\Punctuation.js" />
+    <Content Include="app\ActionTree\Punctuations\Parenthesis.js" />
+    <Content Include="app\ActionTree\Statement.js" />
+    <Content Include="app\ActionTree\Types\Complex.js" />
+    <Content Include="app\ActionTree\Types\Imaginary.js" />
+    <Content Include="app\ActionTree\Types\Real.js" />
+    <Content Include="app\ActionTree\Variable.js" />
+    <Content Include="app\ASTNode.js" />
+    <Content Include="app\Evaluator.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\ExpressionNode.js" />
+    <Content Include="app\Language.js" />
+    <Content Include="app\Lexer.js" />
+    <Content Include="app\Environment\VariableManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\Parser.js" />
+    <Content Include="app\Token.js" />
     <Content Include="main.js" />
     <Content Include="Notes.md" />
     <Content Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\ActionTree\" />
+    <Folder Include="app\ActionTree\Operations\" />
+    <Folder Include="app\ActionTree\Types\" />
+    <Folder Include="app\ActionTree\Operators\" />
+    <Folder Include="app\ActionTree\Punctuations\" />
+    <Folder Include="app\Environment\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

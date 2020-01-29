@@ -4,6 +4,7 @@ class Statement{
     constructor(astStatement){
         if(astStatement.type === "assignment"){
             this.content = new Assignment(astStatement);
+            this.type = "assignment";
         }
         else{
             throw new Error("only assignment statements are currently supported");

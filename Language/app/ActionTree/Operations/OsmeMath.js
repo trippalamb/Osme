@@ -2,6 +2,7 @@ const Real = new require("./Real.js");
 const Imaginary = new require("./Imaginary.js");
 const Complex = new require("./Complex.js");
 
+//TODO: reorganize these to be in the type files as methods
 class OsmeMath {
 
     //Adding
