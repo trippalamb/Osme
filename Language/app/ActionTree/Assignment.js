@@ -17,6 +17,11 @@ class Assignment{
 
     }
 
+    eval(){
+        this.variable.type = this.expression.eval();
+        return this.variable;
+    }
+
 }
 
 module.exports = Assignment;

@@ -25,6 +25,22 @@ class Expression{
 
     }
 
+    eval(){
+        if(this.type === "literal"){
+            
+            return this.left.type;
+        }
+        else if(this.type === "variable"){
+            return this.left.type;
+        }
+        else if(this.type === "expression"){
+            return this.left.eval()[this.operator.getFxnName()](this.right.eval());
+        }
+        else{
+            throw new Error("Error in expression evaluation.");
+        }
+    }
+
     compileToJS(){
 
         var str = this.left.compileToJS();

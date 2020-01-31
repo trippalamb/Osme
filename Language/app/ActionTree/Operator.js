@@ -18,6 +18,10 @@ class Operator{
         }
     }
 
+    getFxnName(){
+        return this.type.type;
+    }
+
     compileToJS(){
         return this.type.symbol;
     }

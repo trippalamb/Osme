@@ -1,0 +1,12 @@
+{
+  "name": "ide",
+  "version": "0.0.0",
+  "description": "IDE",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "monaco-editor": "^0.19.3"
+  }
+}

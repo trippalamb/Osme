@@ -44,12 +44,25 @@ class Lexer{
 
     parseToken(s, readFxn){
         var rd = readFxn(s); //read data
-        this.tokens.push(new Token(rd.type, rd.sub, s.slice(0,rd.end)));
+        this.tokens.push(new Token(rd.type, rd.sub, rd.subsub, s.slice(0,rd.end)));
         return s.slice(rd.end);
     }
 
-    readNumber(){
-        return {end:1, type:"literal", sub:"number"};
+    readNumber(s) {
+        var nStr = "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?";
+        var realRegex = new RegExp(nStr);
+        var imaginaryRegex = new RegExp(nStr + "i");
+
+        var rm = s.match(realRegex);
+        var im = s.match(imaginaryRegex);
+
+        if (im !== null) {
+            return { end: im[0].length, type: "literal", sub: "number", subsub:"imaginary" };
+        }
+        else {
+            return { end: rm[0].length, type: "literal", sub: "number", subsub:"real" };
+        }
+
     }
 
     readWord(){

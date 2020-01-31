@@ -1,13 +1,10 @@
-const VariableManager = require("../Environment/VariableManager.js");
-const Real = require("./Types/Real.js")
+const Real = require("./Types/Real.js");
 
 class Variable{
+
     constructor(astWord){
         this.name = astWord.val;
-        this.evalName = VariableManager.getNextName();
-        this.type = "number";
-        this.subtype = "real";
-        this.val = new Real(0.0);;
+        this.type = new Real(0.0);
     }
 
     compileToJS(){

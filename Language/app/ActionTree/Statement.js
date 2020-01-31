@@ -17,6 +17,15 @@ class Statement{
 
     }
 
+    eval(){
+         if(this.type === "assignment"){
+            return this.content.eval();
+        }
+        else{
+            throw new Error("only assignment statements are currently supported in evaluation");
+        }
+    }
+
 }
 
 module.exports = Statement;

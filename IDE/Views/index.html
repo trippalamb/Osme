@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>OSME</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-3466c8e26c'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+    <script nonce="3466c8e26c"> window.$ = window.jQuery = require("../ext/jquery-3.4.1.min.js");</script>
+</head>
+<body>
+
+<h2>Osme Editor</h2>
+<div id="container" style="float:left;width:500px;height:600px;border:1px solid grey"></div>
+<textarea id="compiled-container" rows="4" cols="50" style="width:500px;height:600px;border:1px solid grey">
+JS
+</textarea>
+</br>
+<button id="btn-compile">Compile To JS</button>
+<button id="btn-eval">Evaluate</button>
+
+<!-- OR ANY OTHER AMD LOADER HERE INSTEAD OF loader.js -->
+<script src="../app/controller/index.js"></script>
+<script nonce="3466c8e26c">
+    $(function(){
+        indexMain();    
+    });
+</script>
+</body>
+</html>
