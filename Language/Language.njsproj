@@ -4,6 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>Language</Name>
     <RootNamespace>Language</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -19,7 +20,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <StartWebBrowser>false</StartWebBrowser>
+    <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +38,9 @@
     <Content Include="app\ActionTree\Operators\Add.js" />
     <Content Include="app\ActionTree\Operators\Assignment.js" />
     <Content Include="app\ActionTree\Operators\Subtract.js" />
-    <Content Include="app\ActionTree\Program.js" />
+    <Content Include="app\ActionTree\Program.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\ActionTree\Punctuation.js" />
     <Content Include="app\ActionTree\Punctuations\Parenthesis.js" />
     <Content Include="app\ActionTree\Statement.js" />
@@ -45,17 +48,19 @@
     <Content Include="app\ActionTree\Types\Imaginary.js" />
     <Content Include="app\ActionTree\Types\Real.js" />
     <Content Include="app\ActionTree\Variable.js" />
+    <Content Include="app\ActionTree\VariableManager.js" />
     <Content Include="app\ASTNode.js" />
+    <Content Include="app\Compiler.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\Evaluator.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app\ExpressionNode.js" />
     <Content Include="app\Language.js" />
     <Content Include="app\Lexer.js" />
-    <Content Include="app\Environment\VariableManager.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="app\Parser.js" />
+    <Content Include="app\Assembler.js" />
     <Content Include="app\Token.js" />
     <Content Include="main.js" />
     <Content Include="Notes.md" />
@@ -68,7 +73,6 @@
     <Folder Include="app\ActionTree\Types\" />
     <Folder Include="app\ActionTree\Operators\" />
     <Folder Include="app\ActionTree\Punctuations\" />
-    <Folder Include="app\Environment\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

@@ -1,0 +1,2 @@
+C:\Users\x51\projects\Osme\Language\obj\Debug\Language.njsprojAssemblyReference.cache
+C:\Users\x51\projects\Osme\Language\bin\Microsoft.NodejsTools.WebRole.dll
