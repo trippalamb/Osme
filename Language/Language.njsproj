@@ -29,6 +29,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app.test\Lexer.test.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\ActionTree\Assignment.js" />
     <Content Include="app\ActionTree\Expression.js" />
     <Content Include="app\ActionTree\Literal.js" />
@@ -53,12 +56,12 @@
     <Content Include="app\Compiler.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app\Evaluator.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="app\ExpressionNode.js" />
     <Content Include="app\Language.js" />
     <Content Include="app\Lexer.js" />
+    <Content Include="app\OperatorList.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\Parser.js" />
     <Content Include="app\Assembler.js" />
     <Content Include="app\Token.js" />
@@ -73,6 +76,7 @@
     <Folder Include="app\ActionTree\Types\" />
     <Folder Include="app\ActionTree\Operators\" />
     <Folder Include="app\ActionTree\Punctuations\" />
+    <Folder Include="app.test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

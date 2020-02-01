@@ -1,3 +1,5 @@
+const OpList = require("./OperatorList.js");
+
 const Lexer = require("./Lexer.js");
 const Parser = require("./Parser.js");
 const Assembler = require("./Assembler.js");
@@ -8,17 +10,7 @@ class Language{
 
         this.name = name;
 
-        var operators = {};
-        if(name === "osme"){
-            operators.add = "+";
-            operators.subtract = "-";
-            operators.assignment = "=";
-
-            operators.list = [];
-            operators.list.push(operators.add);
-            operators.list.push(operators.subtract);
-            operators.list.push(operators.assignment);
-        }
+        var operators = new OpList("osme");
 
         this.lexer = new Lexer(operators);
         this.parser = new Parser();
