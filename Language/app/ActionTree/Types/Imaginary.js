@@ -1,3 +1,4 @@
+const Real = require("./Imaginary.js");
 const Complex = require("./Complex.js");
 
 class Imaginary {
@@ -65,6 +66,35 @@ class Imaginary {
 
     subtract_c(x) {
         return new Complex(-x.r, this.i - x.i);
+    }
+
+    ///MULTIPLY///
+    multiply(x) {
+        switch (x.constructor.name) {
+            case ("Real"):
+                return this.multiply_r(x);
+                break;
+            case ("Imaginary"):
+                return this.multiply_i(x);
+                break;
+            case ("Complex"):
+                return this.multiply_c(x);
+                break;
+            default:
+                throw new Error("multiply operation is not supported for these two types");
+        }
+    }
+
+    multiply_r(x) {
+        return new Imaginary(this.i * x.r);
+    }
+
+    multiply_i(x) {
+        return new Real(-this.i * x.i);
+    }
+
+    multiply_c(x) {
+        return new Complex(-this.i * x.i, this.i * x.r);
     }
 
 

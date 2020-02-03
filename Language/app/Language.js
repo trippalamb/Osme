@@ -21,8 +21,11 @@ class Language{
 
     compile(code, lang) {
         this.tokens = this.lex(code);
+        //console.log(JSON.stringify(this.tokens, null, 2));
         this.ast = this.parse(this.tokens);
+        //console.log(JSON.stringify(this.ast, null, 2));
         this.program = this.assemble(this.ast);
+        //console.log(JSON.stringify(this.program.vm.dictionary, null, 2));
         this.compiledCode = this.compileTo(this.program, lang);
         return this.compiledCode;
     }

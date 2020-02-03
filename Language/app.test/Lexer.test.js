@@ -50,10 +50,37 @@ test("Lexer | isWhiteSpace() : tests to see if '+' is white space", () => {
     expect(lexer.isWhiteSpace('+')).toBe(false);
 });
 
-test("Lexer | isWhiteSpace() : tests to see if '\n' is white space", () => {
+test("Lexer | isWhiteSpace() : tests to see if '\\n' is white space", () => {
     expect(lexer.isWhiteSpace('\n')).toBe(true);
 });
 
 test("Lexer | isWhiteSpace() : tests to see if ' ' is white space", () => {
     expect(lexer.isWhiteSpace(' ')).toBe(true);
 });
+
+//readNumber()
+test("Lexer | readNumber() : test matching a real number", () => {
+    expect(lexer.readNumber('654.7'))
+        .toEqual({ end: 5, type: "literal", sub: "number", subsub: "real" });
+});
+
+test("Lexer | readNumber() : test matching an imaginary number", () => {
+    expect(lexer.readNumber('0.7623i'))
+        .toEqual({ end: 7, type: "literal", sub: "number", subsub: "imaginary" });
+});
+
+test("Lexer | readNumber() : test matching a non-number", () => {
+    expect(() => { lexer.readNumber('banana') }).toThrow();
+});
+
+//readWord()
+test("Lexer | readWord() : test matching a word", () => {
+    expect(lexer.readWord('banana'))
+        .toEqual({ end: 6, type: "word", sub: "", subsub: "" });
+})
+
+//readOperator()
+test("Lexer | readOperator() : test matching an equals sign ", () => {
+    expect(lexer.readOperator('='))
+        .toEqual({ end: 1, type: "operator", sub: "assignment", subsub: "equals" });
+})

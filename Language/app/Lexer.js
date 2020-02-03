@@ -57,39 +57,63 @@ class Lexer{
         var im = s.match(imaginaryRegex);
 
         if (im !== null) {
-            return { end: im[0].length, type: "literal", sub: "number", subsub:"imaginary" };
+            return { end: im[0].length, type: "literal", sub: "number", subsub: "imaginary" };
+        }
+        else if (rm !== null) {
+            return { end: rm[0].length, type: "literal", sub: "number", subsub: "real" };
         }
         else {
-            return { end: rm[0].length, type: "literal", sub: "number", subsub:"real" };
+            throw new Error("expected a known number format");
         }
 
     }
 
-    readWord(){
-        return {end:1, type:"word", sub:""};
+    readWord(s) {
+        var wordRegex = /[_\w][\w_\d]*/;
+        var wm = s.match(wordRegex);
+        return {end:wm[0].length, type:"word", sub:"", subsub:""};
     }
 
     readOperator(s){
         var end = 1;
-        var sub = "";
-        if(s.slice(0, end) === "="){sub = "assignment";}
-        return {end:end, type:"operator", sub:sub};
+        var c = s.slice(0, end);
+        if (c === "=") {
+            return { end: end, type: "operator", sub: "assignment", subsub: "equals" };
+        }
+        else if (c === "+") {
+            return { end: end, type: "operator", sub: "add-ops", subsub: "plus" };
+        }
+        else if (c === "-") {
+            return { end: end, type: "operator", sub: "add-ops", subsub: "minus" };
+        }
+        else if (c === "*") {
+            return { end: end, type: "operator", sub: "mul-ops", subsub: "times" };
+        }
+        else {
+            throw new Error("expected a known operator");
+        }
     }
 
-    isDigit(c) {
-        return /[0-9]/.test(c);
+    // character types
+    isDigit(c) { 
+        return /[0-9]/.test(c); //true means that charcter is considered a digit
     }
     
     isLetter(c) {
-        return /[a-zA-Z]/.test(c);
+        return /[a-zA-Z]/.test(c); //true means that character is considered a letter
     }
     
     isOperator(c){
-        return this.operators.list.includes(c);
+        return this.operators.list.includes(c); //true means that character is considered an operator
+    }
+
+    isPunctuation(c) {
+        throw new Error("not implemented yet");
+        //return this.punctuation.list.includes(c); //true means that character is considered punctuation
     }
     
     isWhiteSpace(c){
-        return /\s/.test(c);
+        return /\s/.test(c); //true means that characgter is considered white space
     }
 
 
