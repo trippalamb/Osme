@@ -53,9 +53,9 @@
     <Content Include="app\ActionTree\Punctuation.js" />
     <Content Include="app\ActionTree\Punctuations\Parenthesis.js" />
     <Content Include="app\ActionTree\Statement.js" />
-    <Content Include="app\ActionTree\Types\Complex.js" />
-    <Content Include="app\ActionTree\Types\Imaginary.js" />
-    <Content Include="app\ActionTree\Types\Real.js" />
+    <Content Include="app\ActionTree\Types\Types.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\ActionTree\Variable.js" />
     <Content Include="app\ActionTree\VariableManager.js" />
     <Content Include="app\ASTNode.js" />

@@ -1,15 +1,14 @@
-const Real = require("./Types/Real.js");
-const Imaginary = require("./Types/Imaginary.js");
+const Types = require("./Types/Types.js");
 
 class Literal{
     
     constructor(astLiteral) {
         switch (astLiteral.subsub) {
             case ("real"):
-                this.type = new Real(astLiteral.val);
+                this.type = new Types.Real(astLiteral.val);
                 break;
             case ("imaginary"):
-                this.type = new Imaginary(astLiteral.val);
+                this.type = new Types.Imaginary(astLiteral.val);
                 break;
             default:
                 throw new Error("Literal type not supported");

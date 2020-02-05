@@ -1,10 +1,10 @@
-const Real = require("./Types/Real.js");
+const Types = require("./Types/Types.js");
 
 class Variable{
 
     constructor(astWord){
         this.name = astWord.val;
-        this.type = new Real(0.0);
+        this.type = new Types.Real(0.0);
     }
 
     compileToJS(){

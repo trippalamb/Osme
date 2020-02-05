@@ -47,11 +47,12 @@ class Language{
         return this.compiler.compile(program).to(lang);
     }
 
+    //TODO: this logic isn't quite right
     eval(program) {
 
         if (typeof (program) === "undefined") {
             if (typeof (this.program) === "undefined") {
-                this.tokens = this.lex(code);
+                this.tokens = this.lex(this.code);
                 this.ast = this.parse(this.tokens);
                 this.program = this.assemble(this.ast);
             }

@@ -1,62 +1,62 @@
 const ExpressionNode = require("./ExpressionNode.js");
 
-class Parser{
-    constructor(){
+class Parser {
+    constructor() {
         this.tree = {};
         this.tree.language = "osme";
         this.tree.statements = [];
         this.tokens = [];
     }
 
-    run(tokens){
+    run(tokens) {
 
         this.tokens = tokens;
-        while(this.tokens.length > 0){
-            
-            if(this.tokens[0].type === "word"){
+        while (this.tokens.length > 0) {
+
+            if (this.tokens[0].type === "word") {
                 this.tree.statements.push(this.wordLogic());
             }
-            else{
+            else {
                 throw new Error("all instructions currently must start with a word.");
             }
-            
+
         }
 
         return this.tree;
     }
 
-    wordLogic(){
+    wordLogic() {
 
-        if (this.tokens.length > 0){
-            if(this.tokens[1].sub === "assignment"){
+        if (this.tokens.length > 0) {
+            if (this.tokens[1].sub === "assignment") {
                 return this.createAssignmentNode();
             }
-            else if(this.tokens[1].sub === "parenthesis"){
+            else if (this.tokens[1].sub === "parenthesis") {
                 return this.createSubCallNode();
             }
-            else if(this.tokens[1].sub === "instance-of"){
+            else if (this.tokens[1].sub === "instance-of") {
                 return this.createDeclarationNode();
             }
         }
-        else{
+        else {
             throw new Error("expecting an '='");
         }
 
     }
 
-    
+
 
     //Node Factories
-    
-    createSubCallNode(){
+
+    createSubCallNode() {
         throw new Error("subroutine call is not implemented yet");
     }
 
-    createDeclarationNode(){
+    createDeclarationNode() {
         throw new Error("declaration call is not implemented yet");
     }
 
-    createAssignmentNode(){
+    createAssignmentNode() {
 
         var node = {};
         node.type = "assignment";
@@ -74,54 +74,55 @@ class Parser{
         //epression
         node.right = this.expressionLogic();
 
+
         return node;
 
     }
 
-   
-    //more
-    
 
-    expressionLogic(){
+    //more
+
+
+    expressionLogic() {
 
         var state = "val";
         var goon = true;
         var exp = [];
 
-        while(goon){
+        while (goon) {
 
-            if(state === "val"){
+            if (state === "val") {
 
-                if(this.tokens[0].sub === "number"){
+                if (this.tokens[0].sub === "number") {
                     exp.push(this.tokens.shift());
                     state = "op";
                 }
-                else{
+                else {
                     throw new Error("expecting a number");
                 }
 
             }
-            else if(state === "op"){
+            else if (state === "op") {
 
-                if(this.tokens[0].type === "operator"){
+                if (this.tokens[0].type === "operator") {
                     exp.push(this.tokens.shift());
                     state = "val";
                 }
-                else{
+                else {
                     goon = false;
                 }
 
             }
-            else{
+            else {
                 throw new Error("impossible expression state");
             }
 
-            if(this.tokens.length === 0){goon = false;}
+            if (this.tokens.length === 0) { goon = false; }
 
         }
 
         return ExpressionNode.create(exp);
-        
+
     }
 
 
