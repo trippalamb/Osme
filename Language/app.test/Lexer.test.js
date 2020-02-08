@@ -82,5 +82,5 @@ test("Lexer | readWord() : test matching a word", () => {
 //readOperator()
 test("Lexer | readOperator() : test matching an equals sign ", () => {
     expect(lexer.readOperator('='))
-        .toEqual({ end: 1, type: "operator", sub: "assignment", name: "equals" });
+        .toEqual({ end: 1, type: "operator", sub: "assignment", name: "assign" });
 })

@@ -75,24 +75,45 @@ class Lexer{
     }
 
     readOperator(s){
-        var end = 1;
-        var c = s.slice(0, end);
-        if (c === "=") {
-            return { end: end, type: "operator", sub: "assignment", name: "equals" };
+        var c = s.slice(0, 1);
+        switch (c) {
+            case '=':
+                return { end: 1, type: "operator", sub: "assignment", name: "assign" };
+            case '+':
+                return { end: 1, type: "operator", sub: "add-ops", name: "add" };
+            case '-':
+                return { end: 1, type: "operator", sub: "add-ops", name: "subtract" };
+            case '*':
+                return readOp_times(); 
+            case '/':
+                return readOp_forwardSlash();
+            default:
+                throw new Error("expected a known operator");            
         }
-        else if (c === "+") {
-            return { end: end, type: "operator", sub: "add-ops", name: "plus" };
+
+        //operator reads
+        function readOp_times() {
+            switch (s.slice(1, 2)) {
+                case '*':
+                    return { end: 2, type: "operator", sub: "exp-ops", name: "power" };
+                default:
+                    return { end: 1, type: "operator", sub: "mul-ops", name: "multiply" };
+            }
         }
-        else if (c === "-") {
-            return { end: end, type: "operator", sub: "add-ops", name: "minus" };
+
+        function readOp_forwardSlash() {
+            switch (s.slice(1, 2)) {
+                case '/':
+                    return { end: 2, type: "operator", sub: "exp-ops", name: "root" };
+                default:
+                    return { end: 1, type: "operator", sub: "mul-ops", name: "divide" };
+
+            }
         }
-        else if (c === "*") {
-            return { end: end, type: "operator", sub: "mul-ops", name: "times" };
-        }
-        else {
-            throw new Error("expected a known operator");
-        }
+
+
     }
+
 
     // character types
     isDigit(c) { 

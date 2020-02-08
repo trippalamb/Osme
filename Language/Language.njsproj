@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c2371582-5fb9-4473-b7bd-c63c2728bca6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>main.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.test\Expression.test.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app.test\ExpressionNode.test.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app.test\Lexer.test.js">

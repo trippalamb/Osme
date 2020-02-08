@@ -17,7 +17,7 @@ class Expression{
             this.type = "expression";
             this.left = new Expression(astExpression.left);
             this.right = new Expression(astExpression.right);
-            this.operator = new Operator(astExpression.token);
+            this.operator = Operator.create(astExpression.token);
         }
         else{
             throw new Error("invalid token when parsing expression.");
@@ -34,7 +34,11 @@ class Expression{
             return this.left.type;
         }
         else if(this.type === "expression"){
-            return this.left.eval()[this.operator.getFxnName()](this.right.eval());
+            var left = this.left.eval();
+            var right = this.right.eval();
+            return left[this.operator.fxn](right);
+
+            //return this.left.eval()[this.operator.fxn](this.right.eval());
         }
         else{
             throw new Error("Error in expression evaluation.");

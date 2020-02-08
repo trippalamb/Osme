@@ -1,11 +1,25 @@
+class MathOperator {
+    constructor() {
+
+    }
+
+    compileToJS() {
+        return this.symbol;
+    }
+}
+
 class Add {
     constructor() {
 
         this.symbol = '+';
-        this.type = "add";
+        this.fxn = "add";
         this.class = "add-ops";
         this.precedence = 3;
 
+    }
+
+    compileToJS() {
+        return this.symbol;
     }
 
 }
@@ -13,9 +27,13 @@ class Add {
 class Subtract {
     constructor() {
         this.symbol = '-';
-        this.type = "subtract";
+        this.fxn = "subtract";
         this.class = "add-ops";
         this.precedence = 3;
+    }
+
+    compileToJS() {
+        return this.symbol;
     }
 
 }
@@ -23,41 +41,53 @@ class Subtract {
 class Multiply {
     constructor() {
         this.symbol = '*';
-        this.type = "multiply";
+        this.fxn = "multiply";
         this.class = "mul-ops";
         this.precedence = 2;
     }
 
+    compileToJS() {
+        return this.symbol;
+    }
 }
 
 class Divide {
     constructor() {
         this.symbol = '/';
-        this.type = "divide";
+        this.fxn = "divide";
         this.class = "mul-ops";
         this.precedence = 2;
     }
 
+    compileToJS() {
+        return this.symbol;
+    }
 }
 
 class Power {
     constructor() {
         this.symbol = '**';
-        this.type = "power";
+        this.fxn = "power";
         this.class = "exp-ops";
         this.precedence = 1;
     }
 
+    compileToJS() {
+        return this.symbol;
+    }
 }
 
 class Root {
     constructor() {
         this.symbol = '//';
-        this.type = "root";
+        this.fxn = "root";
         this.class = "exp-ops";
         this.precedence = 1;
     }
 
+    compileToJS() {
+        return this.symbol;
+    }
 }
 
 

@@ -2,30 +2,32 @@ const MathOps = require("./Operators/MathOperators.js");
 const Assignment = require("./Operators/Assignment.js");
 
 class Operator{
-    constructor(astOp){
-        if(astOp.val === "="){
-            this.type = new Assignment();
-        }
-        else if (astOp.val === "+"){
-            this.type = new MathOps.Add();
-        }
-        else if (astOp.val === "-"){
-            this.type = new MathOps.Subtract();
-        }
-        else if (astOp.val === "*"){
-            this.type = new MathOps.Multiply();
-        }
-        else{
-            throw new Error("operator symbol is not supported");
-        }
+
+    constructor() {
+
     }
 
-    getFxnName(){
-        return this.type.type;
-    }
+    static create(astOp) {
 
-    compileToJS(){
-        return this.type.symbol;
+        switch (astOp.name) {
+
+            case "assign":
+                return new Assignment();
+            case "add":
+                return new MathOps.Add();
+            case "subtract":
+                return new MathOps.Subtract();
+            case "multiply":
+                return new MathOps.Multiply();
+            case "divide":
+                return new MathOps.Divide();
+            case "power":
+                return new MathOps.Power();
+            case "root":
+                return new MathOps.Root();
+            default:
+                throw new Error("operator name [" + astOp.name + "] is not supported");
+        }
     }
 
 }
