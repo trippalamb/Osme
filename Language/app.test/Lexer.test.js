@@ -37,6 +37,15 @@ test("Lexer | isOperator() : tests to see if '+' is an operator", () => {
     expect(lexer.isOperator('+')).toBe(true);
 });
 
+//isPunctuation
+test("Lexer | isPunctuation() : tests to see if '+' is an operator", () => {
+    expect(lexer.isPunctuation('+')).toBe(false);
+});
+
+test("Lexer | isPunctuation() : tests to see if '(' is an operator", () => {
+    expect(lexer.isPunctuation('(')).toBe(true);
+});
+
 //isWhiteSpace()
 test("Lexer | isWhiteSpace() : tests to see if '1' is white space", () => {
     expect(lexer.isWhiteSpace('1')).toBe(false);
@@ -83,4 +92,10 @@ test("Lexer | readWord() : test matching a word", () => {
 test("Lexer | readOperator() : test matching an equals sign ", () => {
     expect(lexer.readOperator('='))
         .toEqual({ end: 1, type: "operator", sub: "assignment", name: "assign" });
+})
+
+//readPunctuation()
+test("Lexer | readPunctuation() : test matching an parenthesis left '(' ", () => {
+    expect(lexer.readPunctuation('('))
+        .toEqual({ end: 1, type: "punctuation", sub: "parenthesis", name: "p-left" });
 })

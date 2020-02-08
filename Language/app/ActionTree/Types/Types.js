@@ -94,6 +94,38 @@ class Real {
         return new Complex(this.r * x.r, this.r * x.i);
     }
 
+    ///DIVIDE///
+    divide(x) {
+        switch (x.constructor.name) {
+            case ("Real"):
+                return this.divide_r(x);
+                break;
+            case ("Imaginary"):
+                return this.divide_i(x);
+                break;
+            case ("Complex"):
+                return this.divide_c(x);
+                break;
+            default:
+                throw new Error("divide operation is not supported for these two types");
+        }
+    }
+
+    divide_r(x) {
+        return new Real(this.r / x.r);
+    }
+
+    divide_i(x) {
+        return new Imaginary(-this.r / x.i);
+    }
+
+    divide_c(x) {
+        var d = x.r * x.r + x.i * x.i;
+        var r = (this.r * x.r) / d;
+        var i = -(this.r * x.i) / d;
+        return new Complex(r, i);
+    }
+
 
 }
 

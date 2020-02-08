@@ -6,6 +6,7 @@ class Lexer{
 
         this.tokens = [];
         this.operators = operators;
+        
 
     }
 
@@ -17,7 +18,6 @@ class Lexer{
         while(s.length > 0){
 
             var c = s.slice(0, 1);
-            var end = 0;
             
             if(this.isDigit(c)){
                 s = this.parseToken(s, this.readNumber);
@@ -27,6 +27,9 @@ class Lexer{
             }
             else if(this.isOperator(c)){
                 s = this.parseToken(s, this.readOperator);
+            }
+            else if (this.isPunctuation(c)) {
+                s = this.parseToken(s, this.readPunctuation);
             }
             else if(this.isWhiteSpace(c)){
                 s = s.trimLeft();
@@ -114,6 +117,19 @@ class Lexer{
 
     }
 
+    readPunctuation(s) {
+        var c = s.slice(0, 1);
+        switch (c) {
+            case '(':
+                return { end: 1, type: "punctuation", sub: "parenthesis", name: "p-left" };
+            case ')':
+                return { end: 1, type: "punctuation", sub: "parenthesis", name: "p-right" };
+            default:
+                throw new Error("expected a known operator");
+        }
+
+    }
+
 
     // character types
     isDigit(c) { 
@@ -129,8 +145,7 @@ class Lexer{
     }
 
     isPunctuation(c) {
-        throw new Error("not implemented yet");
-        //return this.punctuation.list.includes(c); //true means that character is considered punctuation
+        return /[\(\)]/.test(c); //true means that character is considered punctuation
     }
     
     isWhiteSpace(c){

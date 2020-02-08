@@ -91,7 +91,10 @@ class Parser {
 
         while (goon) {
 
-            if (state === "val") {
+            if (this.tokens[0].sub === "parenthesis") {
+                exp.push(this.tokens.shift());
+            }
+            else if (state === "val") {
 
                 if (this.tokens[0].sub === "number") {
                     exp.push(this.tokens.shift());
