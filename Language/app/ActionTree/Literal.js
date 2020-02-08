@@ -3,7 +3,7 @@ const Types = require("./Types/Types.js");
 class Literal{
     
     constructor(astLiteral) {
-        switch (astLiteral.subsub) {
+        switch (astLiteral.name) {
             case ("real"):
                 this.type = new Types.Real(astLiteral.val);
                 break;

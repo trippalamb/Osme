@@ -1,9 +1,9 @@
 class Token{
 
-    constructor(type, sub, subsub, val){
+    constructor(type, sub, name, val){
         this.type = type;
         this.sub = sub;
-        this.subsub = subsub;
+        this.name = name;
         this.val = val;
     }
 

@@ -41,12 +41,10 @@
     <Content Include="app\ActionTree\Number.js" />
     <Content Include="app\ActionTree\Operations\OsmeMath.js" />
     <Content Include="app\ActionTree\Operator.js" />
-    <Content Include="app\ActionTree\Operators\Add.js" />
     <Content Include="app\ActionTree\Operators\Assignment.js" />
-    <Content Include="app\ActionTree\Operators\Multiply.js">
+    <Content Include="app\ActionTree\Operators\MathOperators.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app\ActionTree\Operators\Subtract.js" />
     <Content Include="app\ActionTree\Program.js">
       <SubType>Code</SubType>
     </Content>

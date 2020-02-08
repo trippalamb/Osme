@@ -1,6 +1,4 @@
-const Add = require("./Operators/Add.js");
-const Subtract = require("./Operators/Subtract.js");
-const Multiply = require("./Operators/Multiply.js");
+const MathOps = require("./Operators/MathOperators.js");
 const Assignment = require("./Operators/Assignment.js");
 
 class Operator{
@@ -9,13 +7,13 @@ class Operator{
             this.type = new Assignment();
         }
         else if (astOp.val === "+"){
-            this.type = new Add();
+            this.type = new MathOps.Add();
         }
         else if (astOp.val === "-"){
-            this.type = new Subtract();
+            this.type = new MathOps.Subtract();
         }
         else if (astOp.val === "*"){
-            this.type = new Multiply();
+            this.type = new MathOps.Multiply();
         }
         else{
             throw new Error("operator symbol is not supported");

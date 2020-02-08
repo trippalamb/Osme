@@ -44,7 +44,7 @@ class Lexer{
 
     parseToken(s, readFxn){
         var rd = readFxn(s); //read data
-        this.tokens.push(new Token(rd.type, rd.sub, rd.subsub, s.slice(0,rd.end)));
+        this.tokens.push(new Token(rd.type, rd.sub, rd.name, s.slice(0,rd.end)));
         return s.slice(rd.end);
     }
 
@@ -57,10 +57,10 @@ class Lexer{
         var im = s.match(imaginaryRegex);
 
         if (im !== null) {
-            return { end: im[0].length, type: "literal", sub: "number", subsub: "imaginary" };
+            return { end: im[0].length, type: "literal", sub: "number", name: "imaginary" };
         }
         else if (rm !== null) {
-            return { end: rm[0].length, type: "literal", sub: "number", subsub: "real" };
+            return { end: rm[0].length, type: "literal", sub: "number", name: "real" };
         }
         else {
             throw new Error("expected a known number format");
@@ -71,23 +71,23 @@ class Lexer{
     readWord(s) {
         var wordRegex = /[_\w][\w_\d]*/;
         var wm = s.match(wordRegex);
-        return {end:wm[0].length, type:"word", sub:"", subsub:""};
+        return {end:wm[0].length, type:"word", sub:"", name:""};
     }
 
     readOperator(s){
         var end = 1;
         var c = s.slice(0, end);
         if (c === "=") {
-            return { end: end, type: "operator", sub: "assignment", subsub: "equals" };
+            return { end: end, type: "operator", sub: "assignment", name: "equals" };
         }
         else if (c === "+") {
-            return { end: end, type: "operator", sub: "add-ops", subsub: "plus" };
+            return { end: end, type: "operator", sub: "add-ops", name: "plus" };
         }
         else if (c === "-") {
-            return { end: end, type: "operator", sub: "add-ops", subsub: "minus" };
+            return { end: end, type: "operator", sub: "add-ops", name: "minus" };
         }
         else if (c === "*") {
-            return { end: end, type: "operator", sub: "mul-ops", subsub: "times" };
+            return { end: end, type: "operator", sub: "mul-ops", name: "times" };
         }
         else {
             throw new Error("expected a known operator");

@@ -61,12 +61,12 @@ test("Lexer | isWhiteSpace() : tests to see if ' ' is white space", () => {
 //readNumber()
 test("Lexer | readNumber() : test matching a real number", () => {
     expect(lexer.readNumber('654.7'))
-        .toEqual({ end: 5, type: "literal", sub: "number", subsub: "real" });
+        .toEqual({ end: 5, type: "literal", sub: "number", name: "real" });
 });
 
 test("Lexer | readNumber() : test matching an imaginary number", () => {
     expect(lexer.readNumber('0.7623i'))
-        .toEqual({ end: 7, type: "literal", sub: "number", subsub: "imaginary" });
+        .toEqual({ end: 7, type: "literal", sub: "number", name: "imaginary" });
 });
 
 test("Lexer | readNumber() : test matching a non-number", () => {
@@ -76,11 +76,11 @@ test("Lexer | readNumber() : test matching a non-number", () => {
 //readWord()
 test("Lexer | readWord() : test matching a word", () => {
     expect(lexer.readWord('banana'))
-        .toEqual({ end: 6, type: "word", sub: "", subsub: "" });
+        .toEqual({ end: 6, type: "word", sub: "", name: "" });
 })
 
 //readOperator()
 test("Lexer | readOperator() : test matching an equals sign ", () => {
     expect(lexer.readOperator('='))
-        .toEqual({ end: 1, type: "operator", sub: "assignment", subsub: "equals" });
+        .toEqual({ end: 1, type: "operator", sub: "assignment", name: "equals" });
 })
