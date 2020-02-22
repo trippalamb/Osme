@@ -1,7 +1,7 @@
 const OpList = require("./OperatorList.js");
 
 const Lexer = require("./Lexer.js");
-const Parser = require("./Parser.js");
+const Parser = require("./Parser/Parser.js/index.js");
 const Assembler = require("./Assembler.js");
 const Compiler = require("./Compiler.js");
 

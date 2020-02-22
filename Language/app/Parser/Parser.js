@@ -1,4 +1,5 @@
-const ExpressionNode = require("./ExpressionNode.js");
+const ExpressionParser = require("./ExpressionParser.js");
+const TokenNester = require("./TokenNester.js");
 
 class Parser {
     constructor() {
@@ -6,11 +7,18 @@ class Parser {
         this.tree.language = "osme";
         this.tree.statements = [];
         this.tokens = [];
+        this.nestedTokens = [];
+        this.containerTokens = [
+            { start: '(', end: ')' },
+            { start: '?', end: '?' },
+        ];
     }
 
     run(tokens) {
 
-        this.tokens = tokens;
+        this.tokens = [...tokens];
+        this.nestedTokens = TokenNester.nest(this.tokens, this.containerTokens);
+
         while (this.tokens.length > 0) {
 
             if (this.tokens[0].type === "word") {
@@ -81,8 +89,6 @@ class Parser {
 
 
     //more
-
-
     expressionLogic() {
 
         var state = "val";
@@ -134,3 +140,5 @@ class Parser {
 }
 
 module.exports = Parser;
+
+

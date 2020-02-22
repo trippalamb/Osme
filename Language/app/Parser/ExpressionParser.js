@@ -19,7 +19,7 @@ var expOps = ['**', '//'];
 //#TODO: replace operator characters with operator names and use the `token:name`'s field
 
 //this class represents an expression (ex. 2.0 * (3.0 + 4.0)**5.0)
-class ExpressionNode {
+class ExpressionParser {
 
     static create(tokens) {
 
@@ -101,7 +101,7 @@ class Factor {
             node.type = "literal";
         }
         else {
-            node = ExpressionNode.create(tokens);
+            node = ExpressionParser.create(tokens);
         }
 
         return node;
@@ -121,14 +121,14 @@ class ExpFactor {
             node.type = "literal";
         }
         else {
-            node = ExpressionNode.create(tokens);
+            node = ExpressionParser.create(tokens);
         }
 
         return node;
     }
 }
 
-module.exports = ExpressionNode;
+module.exports = ExpressionParser;
 
 //finds the index of the end of the token enclosure
 //this function takes into account if token enclosure is nested

@@ -32,10 +32,13 @@
     <Content Include="app.test\Expression.test.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app.test\ExpressionNode.test.js">
+    <Content Include="app.test\ExpressioParser.test.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app.test\Lexer.test.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app.test\TokenNester.test.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app\ActionTree\Assignment.js" />
@@ -59,26 +62,29 @@
     </Content>
     <Content Include="app\ActionTree\Variable.js" />
     <Content Include="app\ActionTree\VariableManager.js" />
-    <Content Include="app\ASTNode.js" />
+    <Content Include="app\Parser\ASTNode.js" />
     <Content Include="app\Compiler.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app\ExpressionNode.js" />
+    <Content Include="app\Parser\ExpressionParser.js" />
     <Content Include="app\Language.js" />
     <Content Include="app\Lexer.js" />
     <Content Include="app\OperatorList.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app\Parser.js" />
+    <Content Include="app\Parser\Parser.js" />
     <Content Include="app\Assembler.js" />
+    <Content Include="app\Parser\TokenNester.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\Token.js" />
     <Content Include="main.js" />
-    <Content Include="Notes.md" />
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
     <Folder Include="app\ActionTree\" />
+    <Folder Include="app\Parser\" />
     <Folder Include="app\ActionTree\Operations\" />
     <Folder Include="app\ActionTree\Types\" />
     <Folder Include="app\ActionTree\Operators\" />

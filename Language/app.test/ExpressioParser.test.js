@@ -1,7 +1,8 @@
-const ExpNode = require("../app/ExpressionNode.js");
+const ExpParser = require("../app/Parser/ExpressionParser.js");
 
-//create()
-test("ExpressionNode | create() : tests '2 + 4.5'", () => {
+
+
+test("ExpressionParser | create() : tests '2 + 4.5'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "add-ops", name: "add", val: "+" },
@@ -20,10 +21,10 @@ test("ExpressionNode | create() : tests '2 + 4.5'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 + 4.5 - 3.0'", () => {
+test("ExpressionParser | create() : tests '2 + 4.5 - 3.0'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "add-ops", name: "add", val: "+" },
@@ -52,10 +53,10 @@ test("ExpressionNode | create() : tests '2 + 4.5 - 3.0'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 * 4.5'", () => {
+test("ExpressionParser | create() : tests '2 * 4.5'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
@@ -74,10 +75,10 @@ test("ExpressionNode | create() : tests '2 * 4.5'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 * 4.5 + 3.2'", () => {
+test("ExpressionParser | create() : tests '2 * 4.5 + 3.2'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
@@ -106,10 +107,10 @@ test("ExpressionNode | create() : tests '2 * 4.5 + 3.2'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 * 4.5 / 3.0'", () => {
+test("ExpressionParser | create() : tests '2 * 4.5 / 3.0'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
@@ -139,10 +140,10 @@ test("ExpressionNode | create() : tests '2 * 4.5 / 3.0'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '(2 + 4.5)'", () => {
+test("ExpressionParser | create() : tests '(2 + 4.5)'", () => {
     var tokens = [
         { type: "punctuation", sub: "parentheses", name: "left", val: "(" },
         { type: "literal", sub: "number", name: "real", val: "2" },
@@ -163,10 +164,10 @@ test("ExpressionNode | create() : tests '(2 + 4.5)'", () => {
             type: "literal"
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 * (4.5 + 3.2)'", () => {
+test("ExpressionParser | create() : tests '2 * (4.5 + 3.2)'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
@@ -198,10 +199,10 @@ test("ExpressionNode | create() : tests '2 * (4.5 + 3.2)'", () => {
             }
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
 
-test("ExpressionNode | create() : tests '2 * (4.5 + 3.2)**2'", () => {
+test("ExpressionParser | create() : tests '2 * (4.5 + 3.2)**2'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
@@ -243,5 +244,5 @@ test("ExpressionNode | create() : tests '2 * (4.5 + 3.2)**2'", () => {
             }
         }
     };
-    expect(ExpNode.create(tokens)).toEqual(correct);
+    expect(ExpParser.create(tokens)).toEqual(correct);
 });
