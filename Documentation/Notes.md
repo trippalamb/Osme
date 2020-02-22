@@ -4,13 +4,23 @@
 
 ## Containers
 
+### String `" "` or `' '`
+
+
+
 ### Tuple `[]`
 
 ```
 Tuple stuff = ['hello', 42, true]
 
+doSomething[stuff]
+doSomething['hello', 42, true]
+
 function doSomething[arg1, arg2, arg3]
 	String :: arg1
+	Integer :: arg2
+	Boolean :: arg3
+	
 end function doSomething
 ```
 
@@ -39,11 +49,18 @@ Real<3> pos = <1.0, 2.0, 3.0>
 Dictionary is a named tuple
 
 ```json
-Dictionary dict = {
+Dictionary stuff = {
     title: "Hello",
     something: 42,
     yes: true
 }
+
+doSomething{stuff}
+doSomething{title:'hello', something:42, yes:true}
+
+function doSomething{String::arg1, Integer::arg2, Boolean::arg3}
+	
+end function doSomething
 ```
 
 
