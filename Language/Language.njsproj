@@ -32,15 +32,14 @@
     <Content Include="app.test\Expression.test.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app.test\ExpressioParser.test.js">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="app.test\ExpressionParser.test.js" />
     <Content Include="app.test\Lexer.test.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app.test\TokenNester.test.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="app.test\Types.test.js" />
     <Content Include="app\ActionTree\Assignment.js" />
     <Content Include="app\ActionTree\Expression.js" />
     <Content Include="app\ActionTree\Literal.js" />
@@ -80,6 +79,7 @@
     <Content Include="app\Token.js" />
     <Content Include="main.js" />
     <Content Include="package.json" />
+    <Content Include="TokenDictionary.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />

@@ -1,7 +1,5 @@
 const ExpParser = require("../app/Parser/ExpressionParser.js");
 
-
-
 test("ExpressionParser | create() : tests '2 + 4.5'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
@@ -145,11 +143,15 @@ test("ExpressionParser | create() : tests '2 * 4.5 / 3.0'", () => {
 
 test("ExpressionParser | create() : tests '(2 + 4.5)'", () => {
     var tokens = [
-        { type: "punctuation", sub: "parentheses", name: "left", val: "(" },
-        { type: "literal", sub: "number", name: "real", val: "2" },
-        { type: "operator", sub: "add-ops", name: "add", val: "+" },
-        { type: "literal", sub: "number", name: "real", val: "4.5" },
-        { type: "punctuation", sub: "parentheses", name: "right", val: ")" }
+        {
+            type: "container",
+            name: "sub-exp",
+            val: [
+                { type: "literal", sub: "number", name: "real", val: "2" },
+                { type: "operator", sub: "add-ops", name: "add", val: "+" },
+                { type: "literal", sub: "number", name: "real", val: "4.5" }
+            ]
+        }
     ];
 
     var correct = {
@@ -171,11 +173,15 @@ test("ExpressionParser | create() : tests '2 * (4.5 + 3.2)'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
-        { type: "punctuation", sub: "parentheses", name: "left", val: "(" },
-        { type: "literal", sub: "number", name: "real", val: "4.5" },
-        { type: "operator", sub: "add-ops", name: "add", val: "+" },
-        { type: "literal", sub: "number", name: "real", val: "3.2" },
-        { type: "punctuation", sub: "parentheses", name: "right", val: ")" }
+        {
+            type: "container",
+            name: "sub-exp",
+            val: [
+                { type: "literal", sub: "number", name: "real", val: "4.5" },
+                { type: "operator", sub: "add-ops", name: "add", val: "+" },
+                { type: "literal", sub: "number", name: "real", val: "3.2" }
+            ]
+        }
     ];
 
     var correct = {
@@ -206,11 +212,15 @@ test("ExpressionParser | create() : tests '2 * (4.5 + 3.2)**2'", () => {
     var tokens = [
         { type: "literal", sub: "number", name: "real", val: "2" },
         { type: "operator", sub: "mul-ops", name: "multiply", val: "*" },
-        { type: "punctuation", sub: "parentheses", name: "left", val: "(" },
-        { type: "literal", sub: "number", name: "real", val: "4.5" },
-        { type: "operator", sub: "add-ops", name: "add", val: "+" },
-        { type: "literal", sub: "number", name: "real", val: "3.2" },
-        { type: "punctuation", sub: "parentheses", name: "right", val: ")" },
+        {
+            type: "container",
+            name: "sub-exp",
+            val: [
+                { type: "literal", sub: "number", name: "real", val: "4.5" },
+                { type: "operator", sub: "add-ops", name: "add", val: "+" },
+                { type: "literal", sub: "number", name: "real", val: "3.2" }
+            ]
+        },
         { type: "operator", sub: "exp-ops", name: "power", val: "**" },
         { type: "literal", sub: "number", name: "real", val: "2" }
     ];

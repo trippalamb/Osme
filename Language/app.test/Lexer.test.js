@@ -97,5 +97,23 @@ test("Lexer | readOperator() : test matching an equals sign ", () => {
 //readPunctuation()
 test("Lexer | readPunctuation() : test matching an parenthesis left '(' ", () => {
     expect(lexer.readPunctuation('('))
-        .toEqual({ end: 1, type: "punctuation", sub: "parenthesis", name: "p-left" });
+        .toEqual({ end: 1, type: "punctuation", sub: "parenthesis", name: "paren-open" });
+})
+
+
+//run()
+test("Lexer | run() : test matching '<2.0,3.0,4.0>' ", () => {
+
+    var correct = [
+        { type: "punctuation", sub: "vector", name: "vector-open", val: "<" },
+        { type: "literal", sub: "number", name: "real", val: "2.0" },
+        { type: "punctuation", sub: "comma", name: "comma", val: "," },
+        { type: "literal", sub: "number", name: "real", val: "3.0" },
+        { type: "punctuation", sub: "comma", name: "comma", val: "," },
+        { type: "literal", sub: "number", name: "real", val: "4.0" },
+        { type: "punctuation", sub: "vector", name: "vector-close", val: ">" }
+    ];
+
+    expect(lexer.run('<2.0,3.0,4.0>'))
+        .toEqual(correct);
 })

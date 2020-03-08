@@ -12,9 +12,10 @@
 //<expFactor>    ::= <number> | <variable> | (<expression>)
 
 //#TODO: auto-generate these from the operator types
-var addOps = ['+', '-'];
-var mulOps = ['*', '/'];
-var expOps = ['**', '//'];
+var addOps = ['add', 'subtract'];
+var mulOps = ['multiply', 'divide'];
+var expOps = ['power', 'root'];
+var lastSize = 0;
 
 //#TODO: replace operator characters with operator names and use the `token:name`'s field
 
@@ -25,8 +26,6 @@ class ExpressionParser {
 
         var node = {};
 
-        checkForParentheses();
-
         var i = findNextOps(tokens, addOps);
 
         if (i !== -1) {
@@ -36,21 +35,38 @@ class ExpressionParser {
             node.right = Term.create(tokens.splice(0));
         }
         else if (tokens.length === 1) {
-            node.token = tokens.shift();
-            node.type = "literal";
+            node = singleTokenLogic(tokens.shift())
         }
         else {
             node = Term.create(tokens);
         }
+            
 
         return node;
 
-        function checkForParentheses() {
-            if (tokens[0].val === "(" && tokens[tokens.length - 1].val === ")") {
-                tokens.shift();
-                tokens.pop();
-            }
-        }
+        
+    }
+}
+module.exports = ExpressionParser;
+
+
+function singleTokenLogic(token){
+
+    var node = {};
+
+    if(checkForParentheses()){
+        node = ExpressionParser.create(token.val);
+    }
+    else{
+        node.token = token;
+        node.type = "literal";
+    }
+
+    return node;
+
+    function checkForParentheses() {
+        return (typeof(token.name) !== "undefined" && 
+                token.name === "sub-exp");
     }
 }
 
@@ -68,10 +84,10 @@ class Term {
             node.token = tokens.shift();
             node.right = Factor.create(tokens.splice(0));
         }
-        else if (tokens.length === 1) {
-            node.token = tokens.shift();
-            node.type = "literal";
-        }
+        //else if (tokens.length === 1) {
+        //    node.token = tokens.shift();
+        //    node.type = "literal";
+        //}
         else {
             node = Factor.create(tokens);
         }
@@ -96,10 +112,10 @@ class Factor {
             node.token = tokens.shift();
             node.right = ExpFactor.create(tokens.splice(0));
         }
-        else if (tokens.length === 1) {
-            node.token = tokens.shift();
-            node.type = "literal";
-        }
+        //else if (tokens.length === 1) {
+        //    node.token = tokens.shift();
+        //    node.type = "literal";
+        //}
         else {
             node = ExpressionParser.create(tokens);
         }
@@ -116,43 +132,20 @@ class ExpFactor {
 
         var node = {};
 
-        if (tokens.length === 1) {
-            node.token = tokens.shift();
-            node.type = "literal";
-        }
-        else {
-            node = ExpressionParser.create(tokens);
-        }
+        //if (tokens.length === 1) {
+        //    node.token = tokens.shift();
+        //    node.type = "literal";
+        //}
+        //else {
+        //    node = ExpressionParser.create(tokens);
+        //}
+        node = ExpressionParser.create(tokens);
 
         return node;
     }
 }
 
-module.exports = ExpressionParser;
 
-//finds the index of the end of the token enclosure
-//this function takes into account if token enclosure is nested
-//@tokens: list of tokens
-//@startVal: the value that starts the new token enclosure
-//@endVal: the value that ends the new token enclosure
-function findMatchingIndex(tokens, startVal, endVal) {
-
-    var i = 1;
-
-    while (i < tokens.length) {
-        if (tokens[i].val === startVal) {
-            i += findMatchingIndex(tokens.slice(i), startVal, endVal);
-        }
-        else if (tokens[i].val === endVal) {
-            return i;
-        }
-        else {
-            i++;
-        }
-    }
-
-    throw new Error("Missing closing '" + endChar + "'");
-}
 
 //find the next operator index working from the end of the token list
 //@tokens: list of tokens
@@ -163,17 +156,10 @@ function findNextOps(tokens, ops) {
 
     while (i > 0) {
 
-        if (tokens[i].val === ')') {
-            //reverses so that findMatchingIndex() doesn't have to be written backwards
-            //additionally note that ')' and '(' are reversed from what you might expect
-            i -= findMatchingIndex(tokens.slice(0, i + 1).reverse(), ')', '(');
-        }
-        else {
-            //check to see if the current token matches an operator from the operator list
-            for (const op of ops) {
-                if (tokens[i].val === op) {
-                    return i;
-                }
+        //check to see if the current token matches an operator from the operator list
+        for (const op of ops) {
+            if (tokens[i].name === op) {
+                return i;
             }
         }
 

@@ -121,9 +121,15 @@ class Lexer{
         var c = s.slice(0, 1);
         switch (c) {
             case '(':
-                return { end: 1, type: "punctuation", sub: "parenthesis", name: "p-left" };
+                return { end: 1, type: "punctuation", sub: "parenthesis", name: "paren-open" };
             case ')':
-                return { end: 1, type: "punctuation", sub: "parenthesis", name: "p-right" };
+                return { end: 1, type: "punctuation", sub: "parenthesis", name: "paren-close" };
+            case '<':
+                return { end: 1, type: "punctuation", sub: "vector", name: "vector-open" };
+            case '>':
+                return { end: 1, type: "punctuation", sub: "vector", name: "vector-close" };
+            case ',':
+                return { end: 1, type: "punctuation", sub: "comma", name: "comma" };
             default:
                 throw new Error("expected a known operator");
         }
@@ -145,7 +151,7 @@ class Lexer{
     }
 
     isPunctuation(c) {
-        return /[\(\)]/.test(c); //true means that character is considered punctuation
+        return /[\(\)\<\>,]/.test(c); //true means that character is considered punctuation
     }
     
     isWhiteSpace(c){
