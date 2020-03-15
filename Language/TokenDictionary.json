@@ -1,171 +1,216 @@
 {
-    "identifiers":{
-        "varName": {
-            "match":"[\\w_][\\w\\d_]*"
-        }
-    },
-    "keywords":{
-        
-    },
-    "literals":{
-        "integer":{
-            "match":"[+-]\\d+"
-        },
-        "real":{
-            "match":"^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?"
-        },
-        "imaginary":{
-            "match":"^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?i"
-        },
-        "string_dquote":{
-            "match":"\"[\\s\\S]*?\""
-        },
-        "string_squote":{
-            "match":"'[\\s\\S]*?'"
-        }
-    },
-    "commenters":{
-        "inline_comment":{
-            "match":"#.*$"
-        },
-        "multi_comment":{
-            "match":"#([\\s\\S]*?)#"
-        }
-    },
-    "punctators":{
-        "containers":{
-            "paren_open":{
-                "symbol":"(",
-                "precendece":"container"
-            },
-            "paren_close":{
-                "symbol":")",
-                "precendece":"container"
-            },
-            "vector_open":{
-                "symbol":"<",
-                "precendece":"container"
-            },
-            "vector_close":{
-                "symbol":">",
-                "precendece":"container"
-            },
-            "dict_open":{
-                "symbol":"{",
-                "precendece":"container"
-            },
-            "dict_close":{
-                "symbol":"}",
-                "precendece":"container"
-            },
-            "tuple_open":{
-                "symbol":"[",
-                "precendece":"container"
-            },
-            "tuple_close":{
-                "symbol":"]",
-                "precendece":"container"
-            }
-        },
-        "separator":{
-            "comma":{
-                "symbol":",",
-                "precedence":"separator"
-            }
-        }
-    },
-    "operators":{
-        "assignment":{
-            "assign":{
-                "symbol":"=",
-                "precendece":"assignment"
-            },
-            "defined_as":{
-                "symbol": ":=",
-                "precendece":"assignment"
-            },
-            "point":{
-                "symbol": "->",
-                "precendece":"assignment"
-            }
-        },
-        "math":{
-            "add":{
-                "symbol":"+",
-                "precendence":"add-ops"
-            },
-             "subtract":{
-                "symbol":"-",
-                "precendence":"add-ops"
-            },
-             "multiply":{
-                "symbol":"+",
-                "precendence":"mul-ops"
-            },
-             "divide":{
-                "symbol":"/",
-                "precendence":"mul-ops"
-            },
-             "power":{
-                "symbol":"^",
-                "precendence":"pow-ops"
-            },
-             "root":{
-                "symbol":"^/",
-                "precendence":"pow-ops"
-            }
-        },
-        "comparison":{
-            "is":{
-                "symbol":"?:=",
-                "precendence": "comparison"
-            },
-            "is_approximately":{
-                "symbol": "?~",
-                "precedence":"comparison"
-            },
-            "is_equivalent":{
-                "symbol":"?=",
-                "precendence":"comparison"
-            },
-            "is_not_equivalent":{
-                "symbol":"?/=",
-                "precendence":"comparison"
-            },
-            "is_l_than":{
-                "symbol":"?<",
-                "precendence":"comparison"
-            },
-            "is_g_than":{
-                "symbol":"?>",
-                "precendence":"comparison"
-            },
-            "is_le_than":{
-                "symbol":"?<=",
-                "precendence":"comparison"
-            },
-            "is_ge_than":{
-                "symbol":"?>=",
-                "precendence":"comparison"
-            }
-        },
-        "logical":{
-            "not":{
-                "symbol":"!",
-                "precedence":"logical"
-            },
-            "and":{
-                "symbol":"&&",
-                "precedence":"logical"
-            },
-            "or":{
-                "symbol":"|&",
-                "precedence":"logical"
-            },
-            "xor":{
-                "symbol":"!&",
-                "precedence":"logical"
-            }
-        }
+  "identifiers": {
+    "variable": {
+      "match": "[a-zA-Z_][\\w]*"
     }
+  },
+  "keywords": {
+    "do-open": {
+      "symbol": "do"
+    }
+  },
+  "literals": {
+    "integer": {
+      "match": "[+-]\\d+"
+    },
+    "real": {
+      "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?"
+    },
+    "imaginary": {
+      "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?i"
+    },
+    "string_dquote": {
+      "match": "\"[\\s\\S]*?\""
+    },
+    "string_squote": {
+      "match": "'[\\s\\S]*?'"
+    }
+  },
+  "commenters": {
+    "inline_comment": {
+      "match": "#.*$"
+    },
+    "multi_comment": {
+      "match": "#([\\s\\S]*?)#"
+    }
+  },
+  "punctators": {
+    "containers": {
+      "paren_open": {
+        "symbol": "(",
+        "precendece": "container"
+      },
+      "paren_close": {
+        "symbol": ")",
+        "precendece": "container"
+      },
+      "vector_open": {
+        "symbol": "<",
+        "precendece": "container"
+      },
+      "vector_close": {
+        "symbol": ">",
+        "precendece": "container"
+      },
+      "dict_open": {
+        "symbol": "{",
+        "precendece": "container"
+      },
+      "dict_close": {
+        "symbol": "}",
+        "precendece": "container"
+      },
+      "tuple_open": {
+        "symbol": "[",
+        "precendece": "container"
+      },
+      "tuple_close": {
+        "symbol": "]",
+        "precendece": "container"
+      }
+    },
+    "separator": {
+      "delimiter": {
+        "symbol": ",",
+        "precedence": "separator"
+      }
+    }
+  },
+  "operators": {
+    "assignment": {
+      "assign": {
+        "symbol": "=",
+        "precendece": "assignment"
+      },
+      "defined_as": {
+        "symbol": ":=",
+        "precendece": "assignment"
+      },
+      "point": {
+        "symbol": "->",
+        "precendece": "assignment"
+      }
+    },
+    "math": {
+      "add": {
+        "symbol": "+",
+        "precendence": "add-ops"
+      },
+      "subtract": {
+        "symbol": "-",
+        "precendence": "add-ops"
+      },
+      "multiply": {
+        "symbol": "+",
+        "precendence": "mul-ops"
+      },
+      "divide": {
+        "symbol": "/",
+        "precendence": "mul-ops"
+      },
+      "power": {
+        "symbol": "^",
+        "precendence": "pow-ops"
+      },
+      "root": {
+        "symbol": "^/",
+        "precendence": "pow-ops"
+      }
+    },
+    "comparison": {
+      "is": {
+        "symbol": "?:=",
+        "precendence": "comparison"
+      },
+      "is_approximately": {
+        "symbol": "?~",
+        "precedence": "comparison"
+      },
+      "is_equivalent": {
+        "symbol": "?=",
+        "precendence": "comparison"
+      },
+      "is_not_equivalent": {
+        "symbol": "?/=",
+        "precendence": "comparison"
+      },
+      "is_l_than": {
+        "symbol": "?<",
+        "precendence": "comparison"
+      },
+      "is_g_than": {
+        "symbol": "?>",
+        "precendence": "comparison"
+      },
+      "is_le_than": {
+        "symbol": "?<=",
+        "precendence": "comparison"
+      },
+      "is_ge_than": {
+        "symbol": "?>=",
+        "precendence": "comparison"
+      }
+    },
+    "logical": {
+      "not": {
+        "symbol": "!",
+        "precedence": "logical"
+      },
+      "and": {
+        "symbol": "&&",
+        "precedence": "logical"
+      },
+      "or": {
+        "symbol": "|&",
+        "precedence": "logical"
+      },
+      "xor": {
+        "symbol": "!&",
+        "precedence": "logical"
+      }
+    }
+  },
+  "containerTokens":{
+    "expression": {
+      "start": "exp-open",
+      "end": "exp-close",
+      "name": "expression"
+    },
+    "vector": {
+      "start": "vector-open",
+      "end": "vector-close",
+      "name": "vector"
+    },
+    "tuple": {
+      "start": "tuple-open",
+      "end": "tuple-close",
+      "name": "tuple"
+    },
+    "dict": {
+      "start": "dict-open",
+      "end": "dict-close",
+      "name": "dict"
+    },
+    "function": {
+      "start": "fxn-open",
+      "end": "fxn-close",
+      "name": "function"
+    },
+    "subroutine": {
+      "start": "sub-open",
+      "end": "sub-close",
+      "name": "subroutine"
+    },
+    "do": {
+      "start": "do-open",
+      "end": "do-close",
+      "name": "do"
+    },
+    "if": {
+      "start": "if-open",
+      "end": "if-close",
+      "name": "do"
+    }
+
+  }
 }

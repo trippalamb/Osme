@@ -1,10 +1,12 @@
 const Token = require("./Token.js");
+const Glossary = require("./Glossary.js");
 
 class Lexer{
 
-    constructor(operators){
+    constructor(TokenDictionary){
 
         this.tokens = [];
+        this.glossary = new Glossary(TokenDictionary);
         this.operators = operators;
         
 
@@ -147,7 +149,7 @@ class Lexer{
     }
     
     isOperator(c){
-        return this.operators.list.includes(c); //true means that character is considered an operator
+        return this.opSymbols.list.includes(c); //true means that character is considered an operator
     }
 
     isPunctuation(c) {

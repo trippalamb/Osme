@@ -23,7 +23,7 @@ do i = <1 -> 10>
   stuff[]
 end do
 
-integer<10> :: list = <1 -> 10>
+integer<10> :: list = <1...10>
 
 do i = list
   stuff[]
