@@ -16,9 +16,10 @@ class Lexer {
 
         this.s = str;
 
-        while (s.length > 0) {
+        while (this.s.length > 0) {
 
-            var current = this.getNextToken();
+            this.getNextToken();
+            this.s = this.s.trimStart();
 
         }
 
@@ -29,165 +30,73 @@ class Lexer {
     getNextToken() {
 
         var fxn = "getStateToken_" + this.state;
+        if (typeof (this[fxn]) === "undefined") {
+            throw new Error("Lexer entered an unexpected state [" + this.state + "].");
+        }
 
-        try {
-            this.tokens.push(this[fxn]());
-        }
-        catch{
-            throw new Error("Lexer entered an unexpected state [" + state + "].");
-        }
+        this.tokens.push(this[fxn]());
 
     }
 
     getStateToken_none() {
 
-        //check for word
-        var r = new RegExp("^" + this.glossary.identifiers.variable.match);
-        var m = this.s.match(r);
+        var token = this.checkFor(["word"]);
+        if (token !== null) { return token; }
 
-        if (m !== null) {
-
-            //update lexer
-            this.s = this.s.slice(m[0].length);
-            this.state = "word";
-
-            return new Token(this.state, "identifier", "variable", m[0]);
-        }
-
-
-        throw new Error("Lexer expected an identifier.");
+        throw new Error("Lexer expected a word.");
     }
 
     getStateToken_word() {
 
-        //check for operator
-        for (const op of this.glossary.opList) {
-            if (this.s.indexOf(op.symbol) === 0) {
-                this.s = this.s.slice(op.length);
-                this.state = "operator";
-                return new Token(this.state, op.type, op.name, op.symbol);
-            }
-        }
-
-        //#TODO: check for punctuation
+        var token = this.checkFor(["operator", "punctuation"]);
+        
+        if (token !== null) { return token; }
 
         throw new Error("Lexer expected an operator or punctuation.");
-        
     }
 
-    parseToken(s, readFxn) {
-        var rd = readFxn(s); //read data
-        this.tokens.push(new Token(rd.type, rd.sub, rd.name, s.slice(0, rd.end)));
-        return s.slice(rd.end);
+    getStateToken_operator() {
+
+        var token = this.checkFor(["literal", "punctuation", "word"]);
+
+        if (token !== null) { return token; }
+
+        throw new Error("Lexer expected a literal, punctuation, or a word.");
     }
 
-    readNumber(s) {
-        var nStr = "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?";
-        var realRegex = new RegExp(nStr);
-        var imaginaryRegex = new RegExp(nStr + "i");
+    getStateToken_literal() {
 
-        var rm = s.match(realRegex);
-        var im = s.match(imaginaryRegex);
+        var token = this.checkFor(["operator", "punctuation"]);
 
-        if (im !== null) {
-            return { end: im[0].length, type: "literal", sub: "number", name: "imaginary" };
-        }
-        else if (rm !== null) {
-            return { end: rm[0].length, type: "literal", sub: "number", name: "real" };
-        }
-        else {
-            throw new Error("expected a known number format");
-        }
+        if (token !== null) { return token; }
 
+        throw new Error("Lexer expected a operator or punctuation.");
     }
 
-    readWord(s) {
-        var wordRegex = /[_\w][\w_\d]*/;
-        var wm = s.match(wordRegex);
-        return { end: wm[0].length, type: "word", sub: "", name: "" };
-    }
-
-    readOperator(s) {
-        var c = s.slice(0, 1);
-        switch (c) {
-            case '=':
-                return { end: 1, type: "operator", sub: "assignment", name: "assign" };
-            case '+':
-                return { end: 1, type: "operator", sub: "add-ops", name: "add" };
-            case '-':
-                return { end: 1, type: "operator", sub: "add-ops", name: "subtract" };
-            case '*':
-                return readOp_times();
-            case '/':
-                return readOp_forwardSlash();
-            default:
-                throw new Error("expected a known operator");
-        }
-
-        //operator reads
-        function readOp_times() {
-            switch (s.slice(1, 2)) {
-                case '*':
-                    return { end: 2, type: "operator", sub: "exp-ops", name: "power" };
-                default:
-                    return { end: 1, type: "operator", sub: "mul-ops", name: "multiply" };
+    checkFor(types) {
+        for (const type of types) {
+            var listName = type + "List";
+            for (const i of this.glossary[listName]) {
+                if (typeof (i.symbol) !== "undefined") {
+                    if (this.s.indexOf(i.symbol) === 0) {
+                        this.s = this.s.slice(i.length);
+                        this.state = type;
+                        return new Token(this.state, i.type, i.name, i.symbol);
+                    }
+                }
+                else {
+                    var m = this.s.match(i.match);
+                    if (m !== null) {
+                        this.s = this.s.slice(m[0].length);
+                        this.state = type;
+                        return new Token(this.state, i.type, i.name, m[0]);
+                    }
+                }
             }
         }
 
-        function readOp_forwardSlash() {
-            switch (s.slice(1, 2)) {
-                case '/':
-                    return { end: 2, type: "operator", sub: "exp-ops", name: "root" };
-                default:
-                    return { end: 1, type: "operator", sub: "mul-ops", name: "divide" };
-
-            }
-        }
-
-
+        return null;
     }
-
-    readPunctuation(s) {
-        var c = s.slice(0, 1);
-        switch (c) {
-            case '(':
-                return { end: 1, type: "punctuation", sub: "parenthesis", name: "paren-open" };
-            case ')':
-                return { end: 1, type: "punctuation", sub: "parenthesis", name: "paren-close" };
-            case '<':
-                return { end: 1, type: "punctuation", sub: "vector", name: "vector-open" };
-            case '>':
-                return { end: 1, type: "punctuation", sub: "vector", name: "vector-close" };
-            case ',':
-                return { end: 1, type: "punctuation", sub: "comma", name: "comma" };
-            default:
-                throw new Error("expected a known operator");
-        }
-
-    }
-
-
-    // character types
-    isDigit(c) {
-        return /[0-9]/.test(c); //true means that charcter is considered a digit
-    }
-
-    isLetter(c) {
-        return /[a-zA-Z]/.test(c); //true means that character is considered a letter
-    }
-
-    isOperator(c) {
-        return this.opSymbols.list.includes(c); //true means that character is considered an operator
-    }
-
-    isPunctuation(c) {
-        return /[\(\)\<\>,]/.test(c); //true means that character is considered punctuation
-    }
-
-    isWhiteSpace(c) {
-        return /\s/.test(c); //true means that characgter is considered white space
-    }
-
 
 }
 

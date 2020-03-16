@@ -1,29 +1,35 @@
 {
-  "identifiers": {
-    "variable": {
-      "match": "[a-zA-Z_][\\w]*"
-    }
-  },
-  "keywords": {
-    "do-open": {
-      "symbol": "do"
+  "words": {
+    "identifier": {
+      "variable": {
+        "match": "[a-zA-Z_][\\w]*"
+      }
+    },
+    "keyword": {
+      "do-open": {
+        "symbol": "do"
+      }
     }
   },
   "literals": {
-    "integer": {
-      "match": "[+-]\\d+"
+    "number": {
+      "integer": {
+        "match": "[+-]\\d+"
+      },
+      "real": {
+        "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?"
+      },
+      "imaginary": {
+        "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?i"
+      }
     },
-    "real": {
-      "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?"
-    },
-    "imaginary": {
-      "match": "^[-+]?\\d*\\.?\\d+([eE][-+]?[\\d]+)?i"
-    },
-    "string_dquote": {
-      "match": "\"[\\s\\S]*?\""
-    },
-    "string_squote": {
-      "match": "'[\\s\\S]*?'"
+    "string": {
+      "string_dquote": {
+        "match": "\"[\\s\\S]*?\""
+      },
+      "string_squote": {
+        "match": "'[\\s\\S]*?'"
+      }
     }
   },
   "commenters": {
@@ -35,7 +41,7 @@
     }
   },
   "punctators": {
-    "containers": {
+    "container": {
       "paren_open": {
         "symbol": "(",
         "precendece": "container"
@@ -170,7 +176,7 @@
       }
     }
   },
-  "containerTokens":{
+  "containerTokens": {
     "expression": {
       "start": "exp-open",
       "end": "exp-close",

@@ -1,6 +1,6 @@
-const OpList = require("./OperatorList.js");
-
-const Lexer = require("./Lexer.js");
+const fs = require('fs');
+const TokenDictionary = JSON.parse(fs.readFileSync("./TokenDictionary.json", "utf8"));
+const Lexer = require("./Lexer/Lexer.js");
 const Parser = require("./Parser/Parser.js");
 const Assembler = require("./Assembler.js");
 const Compiler = require("./Compiler.js");
@@ -10,9 +10,8 @@ class Language{
 
         this.name = name;
 
-        var operators = new OpList("osme");
 
-        this.lexer = new Lexer(operators);
+        this.lexer = new Lexer(TokenDictionary);
         this.parser = new Parser();
         this.assembler = new Assembler();
         this.compiler = new Compiler();

@@ -148,5 +148,5 @@ test("Glossary | constructor() : tests opList", () => {
         }
     ];
 
-    expect(glossary.opList).toEqual(correct);
+    expect(glossary.operatorList).toEqual(correct);
 });
