@@ -17,12 +17,14 @@ class Parser {
     run(tokens) {
 
         this.tokens = [...tokens];
-        this.nestedTokens = TokenNester.nest(this.tokens, this.containerTokens);
+        this.tokens = TokenNester.nest(this.tokens, this.containerTokens);
 
         while (this.tokens.length > 0) {
 
             if (this.tokens[0].type === "word") {
                 this.tree.statements.push(this.wordLogic());
+                if (typeof (this.tokens[0]) !== "undefined" &&
+                    this.tokens[0].name === "newline") { this.tokens.shift(); }
             }
             else {
                 throw new Error("all instructions currently must start with a word.");
@@ -39,10 +41,10 @@ class Parser {
             if (this.tokens[1].sub === "assignment") {
                 return this.createAssignmentNode();
             }
-            else if (this.tokens[1].sub === "parenthesis") {
+            else if (this.tokens[1].sub === "tuple") {
                 return this.createSubCallNode();
             }
-            else if (this.tokens[1].sub === "instance-of") {
+            else if (this.tokens[1].name === "instance-of") {
                 return this.createDeclarationNode();
             }
         }
@@ -61,7 +63,24 @@ class Parser {
     }
 
     createDeclarationNode() {
-        throw new Error("declaration call is not implemented yet");
+
+        var node = {};
+        node.type = "declaration";
+
+        var left = {};
+        left.type = "native-type";
+        left.token = this.tokens.shift();
+
+        node.token = this.tokens.shift();
+
+        var right = {};
+        right.type = "var-only";
+        right.token = this.tokens.shift();
+
+        node.left = left;
+        node.right = right;
+
+        return node;
     }
 
     createAssignmentNode() {
@@ -102,7 +121,7 @@ class Parser {
             }
             else if (state === "val") {
 
-                if (this.tokens[0].sub === "number") {
+                if (this.tokens[0].type === "literal" || this.tokens[0].sub === "identifier") {
                     exp.push(this.tokens.shift());
                     state = "op";
                 }
@@ -130,7 +149,7 @@ class Parser {
 
         }
 
-        return ExpressionNode.create(exp);
+        return ExpressionParser.create(exp);
 
     }
 

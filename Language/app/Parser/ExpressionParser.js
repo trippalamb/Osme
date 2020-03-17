@@ -59,7 +59,7 @@ function singleTokenLogic(token){
     }
     else{
         node.token = token;
-        node.type = "literal";
+        node.type = token.type;
     }
 
     return node;
@@ -84,10 +84,6 @@ class Term {
             node.token = tokens.shift();
             node.right = Factor.create(tokens.splice(0));
         }
-        //else if (tokens.length === 1) {
-        //    node.token = tokens.shift();
-        //    node.type = "literal";
-        //}
         else {
             node = Factor.create(tokens);
         }
@@ -112,10 +108,6 @@ class Factor {
             node.token = tokens.shift();
             node.right = ExpFactor.create(tokens.splice(0));
         }
-        //else if (tokens.length === 1) {
-        //    node.token = tokens.shift();
-        //    node.type = "literal";
-        //}
         else {
             node = ExpressionParser.create(tokens);
         }
@@ -132,13 +124,6 @@ class ExpFactor {
 
         var node = {};
 
-        //if (tokens.length === 1) {
-        //    node.token = tokens.shift();
-        //    node.type = "literal";
-        //}
-        //else {
-        //    node = ExpressionParser.create(tokens);
-        //}
         node = ExpressionParser.create(tokens);
 
         return node;

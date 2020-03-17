@@ -4,7 +4,7 @@ class Variable{
 
     constructor(astWord){
         this.name = astWord.val;
-        this.type = new Types.Real(0.0);
+        this.val = new Types.Real(0.0);
     }
 
     compileToJS(){

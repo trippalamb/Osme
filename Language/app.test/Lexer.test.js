@@ -43,6 +43,22 @@ test("Lexer | run() : test matching 'x = <2.0,3.0,4.0>' ", () => {
         .toEqual(correct);
 })
 
+test("Lexer | run() : test matching 'real :: x = 2.1' ", () => {
+
+    lexer.reset();
+
+    var correct = [
+        { type: "word", sub: "keyword", name: "real", val: "real" },
+        { type: "operator", sub: "property", name: "instance-of", val: "::" },
+        { type: "word", sub: "identifier", name: "variable", val: "x" },
+        { type: "operator", sub: "assignment", name: "assign", val: "=" },
+        { type: "literal", sub: "number", name: "real", val: "2.1" }
+    ];
+
+    expect(lexer.run('real :: x = 2.1'))
+        .toEqual(correct);
+})
+
 test("Lexer | run() : test matching 'x = 2.1 + 3.4\ny = <2.0,3.0,4.0>' ", () => {
 
     lexer.reset();

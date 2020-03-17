@@ -17,9 +17,10 @@ class Assignment{
 
     }
 
-    eval(){
-        this.variable.type = this.expression.eval();
-        return this.variable;
+    eval(vm){
+        this.variable.val = this.expression.eval(vm);
+        vm.updateVar(this.variable);
+        return 0;
     }
 
 }

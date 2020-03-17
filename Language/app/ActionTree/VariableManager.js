@@ -19,6 +19,13 @@ class VariableManager {
     }
 
     pushToVarDict(v) {
+        if (this.doesNameExist(v.name)) { throw new Error("Variable name is already declared."); }
+        this.dictionary[v.name] = v;
+        return true;
+    }
+
+    updateVar(v) {
+        if (!this.doesNameExist(v.name)) { throw new Error("Variable name does not yet exist."); }
         this.dictionary[v.name] = v;
         return true;
     }

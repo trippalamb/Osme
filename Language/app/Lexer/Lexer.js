@@ -19,7 +19,7 @@ class Lexer {
         while (this.s.length > 0) {
 
             this.getNextToken();
-            this.s = this.s.replace(/ +?/g, '');
+            this.s = this.s.replace(/^ +?/g, '');
             this.checkNewLineToken(); 
 
         }

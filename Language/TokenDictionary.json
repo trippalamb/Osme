@@ -44,6 +44,21 @@
       },
       "string": {
         "symbol": "string"
+      },
+      "function": {
+        "symbol": "function"
+      },
+      "subroutine": {
+        "symbol": "subroutine"
+      },
+      "class": {
+        "symbol": "class"
+      },
+      "true": {
+        "symbol": "true"
+      },
+      "false": {
+        "symbol": "false"
       }
     }
   },
@@ -124,13 +139,29 @@
         "symbol": "=",
         "precendece": "assignment"
       },
-      "defined_as": {
-        "symbol": ":=",
+      "defined-as": {
+        "symbol": "::=",
         "precendece": "assignment"
       },
       "point": {
         "symbol": "->",
         "precendece": "assignment"
+      }
+    },
+    "property": {
+      "field-of": {
+        "symbol": ":"
+      },
+      "instance-of": {
+        "symbol": "::"
+      }
+    },
+    "expansion": {
+      "range": {
+        "symbol": "..."
+      },
+      "by": {
+        "symbol": ".."
       }
     },
     "math": {
@@ -164,31 +195,31 @@
         "symbol": "?:=",
         "precendence": "comparison"
       },
-      "is_approximately": {
+      "is-approximately": {
         "symbol": "?~",
         "precedence": "comparison"
       },
-      "is_equivalent": {
+      "is-equivalent": {
         "symbol": "?=",
         "precendence": "comparison"
       },
-      "is_not_equivalent": {
+      "is-not-equivalent": {
         "symbol": "?/=",
         "precendence": "comparison"
       },
-      "is_l_than": {
+      "is-l-than": {
         "symbol": "?<",
         "precendence": "comparison"
       },
-      "is_g_than": {
+      "is-g-than": {
         "symbol": "?>",
         "precendence": "comparison"
       },
-      "is_le_than": {
+      "is-le-than": {
         "symbol": "?<=",
         "precendence": "comparison"
       },
-      "is_ge_than": {
+      "is-ge-than": {
         "symbol": "?>=",
         "precendence": "comparison"
       }
@@ -251,7 +282,7 @@
     "if": {
       "start": "if-open",
       "end": "if-close",
-      "name": "do"
+      "name": "if"
     }
 
   }

@@ -4,11 +4,14 @@ class Literal{
     
     constructor(astLiteral) {
         switch (astLiteral.name) {
+            case ("variable"):
+                this.val = 0;
+                break;
             case ("real"):
-                this.type = new Types.Real(astLiteral.val);
+                this.val = new Types.Real(astLiteral.val);
                 break;
             case ("imaginary"):
-                this.type = new Types.Imaginary(astLiteral.val);
+                this.val = new Types.Imaginary(astLiteral.val);
                 break;
             default:
                 throw new Error("Literal type not supported");
@@ -17,7 +20,7 @@ class Literal{
     }
 
     compileToJS(){
-        return this.type.compileToJS();
+        return this.val.compileToJS();
     }
 
 }

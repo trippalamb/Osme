@@ -36,7 +36,6 @@
     <Content Include="app.test\Glossary.test.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app.test\Lexer.save.js" />
     <Content Include="app.test\Lexer.test.js">
       <SubType>Code</SubType>
     </Content>
@@ -45,6 +44,9 @@
     </Content>
     <Content Include="app.test\Types.test.js" />
     <Content Include="app\ActionTree\Assignment.js" />
+    <Content Include="app\ActionTree\Declaration.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="app\ActionTree\Expression.js" />
     <Content Include="app\ActionTree\Literal.js" />
     <Content Include="app\ActionTree\Number.js" />
@@ -71,13 +73,11 @@
     <Content Include="app\Lexer\Lexer.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="app\Parser\ASTNode.js" />
     <Content Include="app\Compiler.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="app\Parser\ExpressionParser.js" />
     <Content Include="app\Language.js" />
-    <Content Include="app\Lexer\Lexer.save.js" />
     <Content Include="app\Lexer\OperatorList.js">
       <SubType>Code</SubType>
     </Content>

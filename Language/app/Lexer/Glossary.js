@@ -27,7 +27,7 @@ class Glossary {
                             type: type,
                             name: name,
                             symbol: dict[type][name].symbol,
-                            precendence: dict[type][name].precendence,
+                            precedence: dict[type][name].precendence,
                             length: dict[type][name].symbol.length
                         });
                     }
@@ -42,7 +42,7 @@ class Glossary {
             }
 
             symbolList.sort((a, b) => b.length - a.length);
-            return matchList.concat(symbolList);
+            return symbolList.concat(matchList);
             
         }
     }

@@ -9,7 +9,7 @@ class Expression{
             this.type = "literal";
             this.left = new Literal(astExpression.token);
         }
-        else if(astExpression.type === "variable"){
+        else if(astExpression.type === "word"){
             this.type = "variable";
             this.left = new Variable(astExpression.token);
         }
@@ -25,17 +25,17 @@ class Expression{
 
     }
 
-    eval(){
+    eval(vm){
         if(this.type === "literal"){
             
-            return this.left.type;
+            return this.left.val;
         }
         else if(this.type === "variable"){
-            return this.left.type;
+            return vm.dictionary[this.left.name].val;
         }
         else if(this.type === "expression"){
-            var left = this.left.eval();
-            var right = this.right.eval();
+            var left = this.left.eval(vm);
+            var right = this.right.eval(vm);
             return left[this.operator.fxn](right);
 
             //return this.left.eval()[this.operator.fxn](this.right.eval());

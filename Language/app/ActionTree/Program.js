@@ -14,9 +14,9 @@ class Program {
 
     eval() {
 
-        for (var s of this.statements) {
-            this.vm.pushToVarDict(s.eval());
-        }
+        this.statements.forEach(
+            (s) => s.eval(this.vm)
+        );
 
         return this.vm.dictionary;
 

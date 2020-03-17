@@ -1,14 +1,16 @@
-const Assignment = require("./Assignment.js");
+var Types = {};
+Types.assignment = require("./Assignment.js");
+Types.declaration = require("./Declaration.js");
 
 class Statement{
-    constructor(astStatement){
-        if(astStatement.type === "assignment"){
-            this.content = new Assignment(astStatement);
-            this.type = "assignment";
+    constructor(astStatement) {
+
+        if (typeof (Types[astStatement.type]) === "undefined") {
+            throw new Error("The assignment type [" + astStatement.type + "] is not yet supported");
         }
-        else{
-            throw new Error("only assignment statements are currently supported");
-        }
+
+        this.content = new Types[astStatement.type](astStatement);
+
     }
 
     compileToJS(){
@@ -17,13 +19,8 @@ class Statement{
 
     }
 
-    eval(){
-         if(this.type === "assignment"){
-            return this.content.eval();
-        }
-        else{
-            throw new Error("only assignment statements are currently supported in evaluation");
-        }
+    eval(vm) {
+        this.content.eval(vm);
     }
 
 }
