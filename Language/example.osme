@@ -19,7 +19,7 @@ end if
 # Example - do loops
 integer :: i
 
-do i = <1 -> 10>
+do i = <1 ... 10>
   stuff[]
 end do
 

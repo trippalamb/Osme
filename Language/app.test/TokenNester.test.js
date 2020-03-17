@@ -10,8 +10,6 @@ var containerTokens = {
     "if":{start:'if-open', end:'if-close', name:"do"}
 
 };
-//left angle '?'
-//right angle '?'
 
 test("TokenNester | nest() : tests '2 + 4.5'", () => {
     var tokens = [

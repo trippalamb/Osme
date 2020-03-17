@@ -8,6 +8,42 @@
     "keyword": {
       "do-open": {
         "symbol": "do"
+      },
+      "while-open": {
+        "symbol": "while"
+      },
+      "until-open": {
+        "symbol": "until"
+      },
+      "do-close": {
+        "symbol": "end do"
+      },
+      "if-open": {
+        "symbol": "if"
+      },
+      "elseif-open": {
+        "symbol": "else if"
+      },
+      "else-open": {
+        "symbol": "else"
+      },
+      "if-close": {
+        "symbol": "end if"
+      },
+      "integer": {
+        "symbol": "integer"
+      },
+      "real": {
+        "symbol": "real"
+      },
+      "imaginary": {
+        "symbol": "imaginary"
+      },
+      "complex": {
+        "symbol": "complex"
+      },
+      "string": {
+        "symbol": "string"
       }
     }
   },
@@ -40,37 +76,37 @@
       "match": "#([\\s\\S]*?)#"
     }
   },
-  "punctators": {
+  "punctuation": {
     "container": {
-      "paren_open": {
+      "exp-open": {
         "symbol": "(",
         "precendece": "container"
       },
-      "paren_close": {
+      "exp-close": {
         "symbol": ")",
         "precendece": "container"
       },
-      "vector_open": {
+      "vector-open": {
         "symbol": "<",
         "precendece": "container"
       },
-      "vector_close": {
+      "vector-close": {
         "symbol": ">",
         "precendece": "container"
       },
-      "dict_open": {
+      "dict-open": {
         "symbol": "{",
         "precendece": "container"
       },
-      "dict_close": {
+      "dict-close": {
         "symbol": "}",
         "precendece": "container"
       },
-      "tuple_open": {
+      "tuple-open": {
         "symbol": "[",
         "precendece": "container"
       },
-      "tuple_close": {
+      "tuple-close": {
         "symbol": "]",
         "precendece": "container"
       }

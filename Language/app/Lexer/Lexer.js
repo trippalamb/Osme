@@ -7,7 +7,7 @@ class Lexer {
 
         this.tokens = [];
         this.glossary = new Glossary(TokenDictionary);
-        this.state = "none";
+        this.state = "new";
         this.s = "";
 
     }
@@ -19,12 +19,33 @@ class Lexer {
         while (this.s.length > 0) {
 
             this.getNextToken();
-            this.s = this.s.trimStart();
+            this.s = this.s.replace(/ +?/g, '');
+            this.checkNewLineToken(); 
 
         }
 
         return this.tokens;
 
+    }
+
+    reset() {
+        this.s = "";
+        this.state = "new";
+        this.tokens = [];
+    }
+
+    checkNewLineToken() {
+        var r = /^[\r|\n|\r\n]/
+        var m = this.s.match(r);
+        if (m !== null) {
+            this.s = this.s.slice(m[0].length)
+            //#TODO: add logic to know when a command is over
+            this.state = "new"
+            this.tokens.push(new Token("new", "newCommand", "newline", m[0]));
+        }
+
+
+        return 0;
     }
 
     getNextToken() {
@@ -36,13 +57,16 @@ class Lexer {
 
         this.tokens.push(this[fxn]());
 
+        return 0;
+
     }
 
-    getStateToken_none() {
+    getStateToken_new() {
 
         var token = this.checkFor(["word"]);
         if (token !== null) { return token; }
 
+        console.log(this.s.slice(0, 20));
         throw new Error("Lexer expected a word.");
     }
 
@@ -52,6 +76,7 @@ class Lexer {
         
         if (token !== null) { return token; }
 
+        console.log(this.s.slice(0, 20));
         throw new Error("Lexer expected an operator or punctuation.");
     }
 
@@ -61,6 +86,7 @@ class Lexer {
 
         if (token !== null) { return token; }
 
+        console.log(this.s.slice(0, 20));
         throw new Error("Lexer expected a literal, punctuation, or a word.");
     }
 
@@ -70,7 +96,18 @@ class Lexer {
 
         if (token !== null) { return token; }
 
+        console.log(this.s.slice(0, 20));
         throw new Error("Lexer expected a operator or punctuation.");
+    }
+
+    getStateToken_punctuation() {
+
+        var token = this.checkFor(["operator", "literal", "word"]);
+
+        if (token !== null) { return token; }
+
+        console.log(this.s.slice(0, 20));
+        throw new Error("Lexer expected a operator, literal, or a word.");
     }
 
     checkFor(types) {
