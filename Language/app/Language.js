@@ -12,7 +12,7 @@ class Language{
 
 
         this.lexer = new Lexer(TokenDictionary);
-        this.parser = new Parser();
+        this.parser = new Parser(TokenDictionary);
         this.assembler = new Assembler();
         this.compiler = new Compiler();
 

@@ -1,12 +1,7 @@
 const Language = require("./app/Language.js");
+const fs = require("fs");
 
-//var code = "x = 2.1 + 3.4";
-//var code = "x = <2.0,4.3,5.0>";
-var code = "real :: x\n";
-code += "real :: y\n";
-code += "x = 2.1 + 3.2\n";
-code += "y = x + 4.5";
-
+var code = fs.readFileSync("./examples/IfStatement_1.osme", "utf8").trim();
 var osme = new Language("osme");
 
 //var jsCode = osme.compile(code, "js");

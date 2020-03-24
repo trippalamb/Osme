@@ -6,28 +6,28 @@
       }
     },
     "keyword": {
-      "do-open": {
+      "do_open": {
         "symbol": "do"
       },
-      "while-open": {
+      "while_open": {
         "symbol": "while"
       },
-      "until-open": {
+      "until_open": {
         "symbol": "until"
       },
-      "do-close": {
+      "do_close": {
         "symbol": "end do"
       },
-      "if-open": {
+      "if_open": {
         "symbol": "if"
       },
-      "elseif-open": {
+      "else_if": {
         "symbol": "else if"
       },
-      "else-open": {
+      "else": {
         "symbol": "else"
       },
-      "if-close": {
+      "if_close": {
         "symbol": "end if"
       },
       "integer": {
@@ -41,6 +41,9 @@
       },
       "complex": {
         "symbol": "complex"
+      },
+      "boolean": {
+        "symbol": "boolean"
       },
       "string": {
         "symbol": "string"
@@ -93,37 +96,37 @@
   },
   "punctuation": {
     "container": {
-      "exp-open": {
+      "expression_open": {
         "symbol": "(",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "exp-close": {
+      "expression_close": {
         "symbol": ")",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "vector-open": {
+      "vector_open": {
         "symbol": "<",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "vector-close": {
+      "vector_close": {
         "symbol": ">",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "dict-open": {
+      "dict_open": {
         "symbol": "{",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "dict-close": {
+      "dict_close": {
         "symbol": "}",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "tuple-open": {
+      "tuple_open": {
         "symbol": "[",
-        "precendece": "container"
+        "precedece": "container"
       },
-      "tuple-close": {
+      "tuple_close": {
         "symbol": "]",
-        "precendece": "container"
+        "precedece": "container"
       }
     },
     "separator": {
@@ -149,10 +152,10 @@
       }
     },
     "property": {
-      "field-of": {
+      "field_of": {
         "symbol": ":"
       },
-      "instance-of": {
+      "instance_of": {
         "symbol": "::"
       }
     },
@@ -167,27 +170,27 @@
     "math": {
       "add": {
         "symbol": "+",
-        "precendence": "add-ops"
+        "precendence": "add_ops"
       },
       "subtract": {
         "symbol": "-",
-        "precendence": "add-ops"
+        "precendence": "add_ops"
       },
       "multiply": {
         "symbol": "+",
-        "precendence": "mul-ops"
+        "precendence": "mul_ops"
       },
       "divide": {
         "symbol": "/",
-        "precendence": "mul-ops"
+        "precendence": "mul_ops"
       },
       "power": {
         "symbol": "^",
-        "precendence": "pow-ops"
+        "precendence": "pow_ops"
       },
       "root": {
         "symbol": "^/",
-        "precendence": "pow-ops"
+        "precendence": "pow_ops"
       }
     },
     "comparison": {
@@ -195,31 +198,31 @@
         "symbol": "?:=",
         "precendence": "comparison"
       },
-      "is-approximately": {
+      "is_approximately": {
         "symbol": "?~",
         "precedence": "comparison"
       },
-      "is-equivalent": {
+      "is_equivalent": {
         "symbol": "?=",
         "precendence": "comparison"
       },
-      "is-not-equivalent": {
+      "is_not_equivalent": {
         "symbol": "?/=",
         "precendence": "comparison"
       },
-      "is-l-than": {
+      "is_lt": {
         "symbol": "?<",
         "precendence": "comparison"
       },
-      "is-g-than": {
+      "is_gt": {
         "symbol": "?>",
         "precendence": "comparison"
       },
-      "is-le-than": {
+      "is_le": {
         "symbol": "?<=",
         "precendence": "comparison"
       },
-      "is-ge-than": {
+      "is_ge": {
         "symbol": "?>=",
         "precendence": "comparison"
       }
@@ -245,45 +248,44 @@
   },
   "containerTokens": {
     "expression": {
-      "start": "exp-open",
-      "end": "exp-close",
+      "start": "expression_open",
+      "end": "expression_close",
       "name": "expression"
     },
     "vector": {
-      "start": "vector-open",
-      "end": "vector-close",
+      "start": "vector_open",
+      "end": "vector_close",
       "name": "vector"
     },
     "tuple": {
-      "start": "tuple-open",
-      "end": "tuple-close",
+      "start": "tuple_open",
+      "end": "tuple_close",
       "name": "tuple"
     },
     "dict": {
-      "start": "dict-open",
-      "end": "dict-close",
+      "start": "dict_open",
+      "end": "dict_close",
       "name": "dict"
     },
     "function": {
-      "start": "fxn-open",
-      "end": "fxn-close",
+      "start": "fxn_open",
+      "end": "fxn_close",
       "name": "function"
     },
     "subroutine": {
-      "start": "sub-open",
-      "end": "sub-close",
+      "start": "sub_open",
+      "end": "sub_close",
       "name": "subroutine"
     },
     "do": {
-      "start": "do-open",
-      "end": "do-close",
+      "start": "do_open",
+      "end": "do_close",
       "name": "do"
     },
     "if": {
-      "start": "if-open",
-      "end": "if-close",
+      "start": "if_open",
+      "end": "if_close",
       "name": "if"
     }
-
   }
 }

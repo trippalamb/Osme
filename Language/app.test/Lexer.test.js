@@ -30,13 +30,13 @@ test("Lexer | run() : test matching 'x = <2.0,3.0,4.0>' ", () => {
     var correct = [
         { type: "word", sub: "identifier", name: "variable", val: "x" },
         { type: "operator", sub: "assignment", name: "assign", val: "=" },
-        { type: "punctuation", sub: "container", name: "vector-open", val: "<" },
+        { type: "punctuation", sub: "container", name: "vector_open", val: "<" },
         { type: "literal", sub: "number", name: "real", val: "2.0" },
         { type: "punctuation", sub: "separator", name: "delimiter", val: "," },
         { type: "literal", sub: "number", name: "real", val: "3.0" },
         { type: "punctuation", sub: "separator", name: "delimiter", val: "," },
         { type: "literal", sub: "number", name: "real", val: "4.0" },
-        { type: "punctuation", sub: "container", name: "vector-close", val: ">" }
+        { type: "punctuation", sub: "container", name: "vector_close", val: ">" }
     ];
 
     expect(lexer.run('x = <2.0,3.0,4.0>'))
@@ -49,7 +49,7 @@ test("Lexer | run() : test matching 'real :: x = 2.1' ", () => {
 
     var correct = [
         { type: "word", sub: "keyword", name: "real", val: "real" },
-        { type: "operator", sub: "property", name: "instance-of", val: "::" },
+        { type: "operator", sub: "property", name: "instance_of", val: "::" },
         { type: "word", sub: "identifier", name: "variable", val: "x" },
         { type: "operator", sub: "assignment", name: "assign", val: "=" },
         { type: "literal", sub: "number", name: "real", val: "2.1" }
@@ -72,13 +72,13 @@ test("Lexer | run() : test matching 'x = 2.1 + 3.4\ny = <2.0,3.0,4.0>' ", () => 
         { type: "new", sub: "newCommand", name: "newline", val: "\n" },
         { type: "word", sub: "identifier", name: "variable", val: "y" },
         { type: "operator", sub: "assignment", name: "assign", val: "=" },
-        { type: "punctuation", sub: "container", name: "vector-open", val: "<" },
+        { type: "punctuation", sub: "container", name: "vector_open", val: "<" },
         { type: "literal", sub: "number", name: "real", val: "2.0" },
         { type: "punctuation", sub: "separator", name: "delimiter", val: "," },
         { type: "literal", sub: "number", name: "real", val: "3.0" },
         { type: "punctuation", sub: "separator", name: "delimiter", val: "," },
         { type: "literal", sub: "number", name: "real", val: "4.0" },
-        { type: "punctuation", sub: "container", name: "vector-close", val: ">" }
+        { type: "punctuation", sub: "container", name: "vector_close", val: ">" }
     ];
 
     expect(lexer.run('x = 2.1 + 3.4\ny = < 2.0, 3.0, 4.0 >'))

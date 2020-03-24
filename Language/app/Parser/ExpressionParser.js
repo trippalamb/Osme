@@ -66,7 +66,7 @@ function singleTokenLogic(token){
 
     function checkForParentheses() {
         return (typeof(token.name) !== "undefined" && 
-                token.name === "sub-exp");
+                token.name === "expression");
     }
 }
 

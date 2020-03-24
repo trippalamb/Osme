@@ -1,0 +1,12 @@
+real :: x
+real :: y
+boolean :: condition
+
+condition = true
+x = 2.1 + 3.2
+
+if(condition)
+  y = x + 4.5
+else
+  y = 10.0
+end if

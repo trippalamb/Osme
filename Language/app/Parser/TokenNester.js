@@ -5,60 +5,23 @@ class TokenNester {
         
         var nested = [];
 
-        
-
         while (tokens.length > 0) {
 
-            var type = tokens[0].sub;
-            switch(tokens[0].sub){
-                case ("expression"):
-                    var i = findMatchingIndex(tokens, cts[type].start, cts[type].end);
-                    tokens.shift();
-                    var nt = { //nested token
-                        type: "container",
-                        name: cts[type].name,
-                        val: this.nest(tokens.splice(0, i - 1), cts)
-                    }
-                    tokens.shift();
-                    nested.push(nt);
-                    break;
-
-                case ("vector"):
-                    var i = findMatchingIndex(tokens, cts[type].start, cts[type].end);
-                    tokens.shift();
-                    var val = this.nest(tokens.splice(0, i - 1), cts)
-                    val = val.filter((v) => v.sub !== "separator");
-                    val.every((v) => v.sub === "number");
-                    var nt = { //nested token
-                        type: "container",
-                        name: cts[type].name,
-                        val: val
-                    }
-                    tokens.shift();
-                    nested.push(nt);
-                    break;
-
-                case ("tuple"):
-                    var i = findMatchingIndex(tokens, cts[type].start, cts[type].end);
-                    tokens.shift();
-                    var val = this.nest(tokens.splice(0, i - 1), cts)
-                    val = val.filter((v) => v.sub !== "separator")
-                    var nt = { //nested token
-                        type: "container",
-                        name: cts[type].name,
-                        val: val
-                    }
-                    tokens.shift();
-                    nested.push(nt);
-                    break;
-
-                case ("dict"):
-
-                    break;
-
-                default:
-                    nested.push(tokens.shift());
-
+            var openToken = (tokens[0].name.match(/_open/) !== null);
+            if (openToken) {
+                var type = tokens[0].name.slice(0, tokens[0].name.indexOf("_"));
+                var i = findMatchingIndex(tokens, cts[type].start, cts[type].end);
+                tokens.shift();
+                var nt = { //nested token
+                    type: "container",
+                    name: type,
+                    val: this.nest(tokens.splice(0, i - 1), cts)
+                }
+                tokens.shift();
+                nested.push(nt);
+            }
+            else {
+                nested.push(tokens.shift());
             }
 
         }

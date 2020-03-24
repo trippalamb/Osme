@@ -19,7 +19,7 @@ class Lexer {
         while (this.s.length > 0) {
 
             this.getNextToken();
-            this.s = this.s.replace(/^ +?/g, '');
+            this.s = this.s.replace(/^ */, '');
             this.checkNewLineToken(); 
 
         }
@@ -35,10 +35,11 @@ class Lexer {
     }
 
     checkNewLineToken() {
-        var r = /^[\r|\n|\r\n]/
+        var r = /^\r?\n/
         var m = this.s.match(r);
         if (m !== null) {
-            this.s = this.s.slice(m[0].length)
+            this.s = this.s.slice(m[0].length);
+            this.s = this.s.replace(/^\s*/m, '');
             //#TODO: add logic to know when a command is over
             this.state = "new"
             this.tokens.push(new Token("new", "newCommand", "newline", m[0]));

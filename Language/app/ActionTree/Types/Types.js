@@ -46,6 +46,8 @@ class Real extends _Number{
         return this.r;
     }
 
+    /////////MATH/////////
+
     ///ADD///
     add_Real(x) {
         return new Real(this.r + x.r);
@@ -101,6 +103,16 @@ class Real extends _Number{
         return new Complex(r, i);
     }
 
+    /////////COMPARISON/////////
+    gt(x) {
+        switch (x.constructor.name) {
+            case ("Boolean"):
+                return (this.b && x);
+                break;
+            default:
+                throw new Error("And operation requires a boolean variable")
+        }
+    }
 
 }
 
@@ -331,6 +343,47 @@ class Vector{
     }
     
 
+}
+
+
+class Boolean {
+    constructor(b) {
+        this.b = b;
+    }
+
+    not() {
+        return !this.b;
+    }
+
+    and(x) {
+        switch (x.constructor.name) {
+            case ("Boolean"):
+                return (this.b && x);
+                break;
+            default:
+                throw new Error("And operation requires a boolean variable")
+        }
+    }
+
+    or(x) {
+        switch (x.constructor.name) {
+            case ("Boolean"):
+                return (this.b || x);
+                break;
+            default:
+                throw new Error("And operation requires a boolean variable")
+        }
+    }
+
+    xor(x) {
+        switch (x.constructor.name) {
+            case ("Boolean"):
+                return (this.b ? !x : x);
+                break;
+            default:
+                throw new Error("And operation requires a boolean variable")
+        }
+    }
 }
 
 module.exports = {

@@ -2,16 +2,13 @@ const ExpressionParser = require("./ExpressionParser.js");
 const TokenNester = require("./TokenNester.js");
 
 class Parser {
-    constructor() {
+    constructor(TokenDictionary) {
         this.tree = {};
         this.tree.language = "osme";
         this.tree.statements = [];
         this.tokens = [];
         this.nestedTokens = [];
-        this.containerTokens = [
-            { start: '(', end: ')' },
-            { start: '?', end: '?' },
-        ];
+        this.containerTokens = TokenDictionary.containerTokens;
     }
 
     run(tokens) {
@@ -23,12 +20,18 @@ class Parser {
 
             if (this.tokens[0].type === "word") {
                 this.tree.statements.push(this.wordLogic());
-                if (typeof (this.tokens[0]) !== "undefined" &&
-                    this.tokens[0].name === "newline") { this.tokens.shift(); }
+                            }
+            else if (this.tokens[0].type === "container") {
+                this.tree.statements.push(this.containerLogic());
             }
             else {
                 throw new Error("all instructions currently must start with a word.");
             }
+
+            if (typeof (this.tokens[0]) !== "undefined" && this.tokens[0].name === "newline") {
+                this.tokens.shift();
+            }
+
 
         }
 
@@ -41,10 +44,7 @@ class Parser {
             if (this.tokens[1].sub === "assignment") {
                 return this.createAssignmentNode();
             }
-            else if (this.tokens[1].sub === "tuple") {
-                return this.createSubCallNode();
-            }
-            else if (this.tokens[1].name === "instance-of") {
+            else if (this.tokens[1].name === "instance_of") {
                 return this.createDeclarationNode();
             }
         }
@@ -54,9 +54,33 @@ class Parser {
 
     }
 
+    containerLogic() {
+
+        switch (this.tokens[0].name) {
+            case ("if"):
+                return this.createIfNode();
+                break;
+            case ("do"):
+                return this.createDoNode();
+                break;
+            case ("vector"):
+                return this.createVectorNode();
+                break;
+            default:
+                throw new Error("container type is not yet supported");
+        }
+
+    }
 
 
     //Node Factories
+
+
+    createIfNode() {
+        var node = {};
+        node.type = "if";
+
+    }
 
     createSubCallNode() {
         throw new Error("subroutine call is not implemented yet");
@@ -121,6 +145,7 @@ class Parser {
             }
             else if (state === "val") {
 
+                //#TODO: handle more situations.
                 if (this.tokens[0].type === "literal" || this.tokens[0].sub === "identifier") {
                     exp.push(this.tokens.shift());
                     state = "op";
